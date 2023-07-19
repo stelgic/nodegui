@@ -118,6 +118,10 @@
 #include "QtWidgets/QToolButton/qtoolbutton_wrap.h"
 #include "QtWidgets/QTreeWidget/qtreewidget_wrap.h"
 #include "QtWidgets/QTreeWidgetItem/qtreewidgetitem_wrap.h"
+#include "QtWebEngine/QWebChannel/qwebchannel_wrap.h"
+#include "QtWebEngine/QWebEnginePage/qwebenginepage_wrap.h"
+#include "QtWebEngine/QWebEngineSettings/qwebenginesettings_wrap.h"
+#include "QtWebEngine/QWebEngineView/qwebengineview_wrap.h"
 #include "QtWidgets/QWidget/qwidget_wrap.h"
 #include "core/FlexLayout/flexlayout_wrap.h"
 #include "core/Integration/integration.h"
@@ -250,6 +254,11 @@ Napi::Object Main(Napi::Env env, Napi::Object exports) {
   QAbstractItemDelegateWrap::init(env, exports);
   QInputMethodEventWrap::init(env, exports);
   QInputMethodQueryEventWrap::init(env, exports);
+  //QDesktopWidgetWrap::init(env, exports);
+  QWebChannelWrap::init(env, exports);
+  QWebEngineSettingsWrap::init(env, exports);
+  QWebEnginePageWrap::init(env, exports);
+  QWebEngineViewWrap::init(env, exports);
 
   // Test
   CacheTestQObjectWrap::init(env, exports);

@@ -163,6 +163,10 @@ add_library(${CORE_WIDGETS_ADDON} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWidgets/QStyleFactory/qstylefactory_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWidgets/QSplitter/qsplitter_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWidgets/QAbstractItemDelegate/qabstractitemdelegate_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWebEngine/QWebChannel/qwebchannel_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWebEngine/QWebEnginePage/qwebenginepage_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWebEngine/QWebEngineSettings/qwebenginesettings_wrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWebEngine/QWebEngineView/qwebengineview_wrap.cpp"
     # Custom widgets (include them for automoc since they contain Q_OBJECT)
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtCore/QAbstractItemModel/nabstractitemmodel.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtCore/QItemSelectionModel/nitemselectionmodel.hpp"
@@ -229,6 +233,12 @@ add_library(${CORE_WIDGETS_ADDON} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWidgets/QSvgWidget/nsvgwidget.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWidgets/QHeaderView/nheaderview.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWidgets/QSplitter/nsplitter.hpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWebEngine/QWebChannel/nwebchannel.hpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWebEngine/QWebChannel/qwebchannel_wrap.h"
+    "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWebEngine/QWebEnginePage/qwebenginepage_wrap.h"
+    "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWebEngine/QWebEngineSettings/qwebenginesettings_wrap.h"
+    "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWebEngine/QWebEngineView/nwebengineview.hpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWebEngine/QWebEngineView/qwebengineview_wrap.h"
 
     # Test
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/test/CacheTestQObject.h"
@@ -280,4 +290,7 @@ target_link_libraries(${CORE_WIDGETS_ADDON} PRIVATE
     Qt6::Gui
     Qt6::Svg
     Qt6::SvgWidgets
+    Qt6::WebEngineCore 
+    Qt6::WebEngineQuick
+    Qt6::WebEngineWidgets
 )

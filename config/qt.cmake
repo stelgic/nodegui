@@ -20,6 +20,6 @@ macro(AddQtSupport addonName)
     message(STATUS "Using Qt installation for ${addonName} QT_CMAKE_HOME_DIR:${QT_CMAKE_HOME_DIR}")
 
     list(APPEND CMAKE_PREFIX_PATH "${QT_CMAKE_HOME_DIR}/../../..")
-    find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Core Svg SvgWidgets)
+    find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Core Svg SvgWidgets WebEngineQuick WebEngineCore WebEngineWidgets)
 
 endmacro(AddQtSupport addonName)

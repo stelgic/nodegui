@@ -189,6 +189,13 @@ export {
     wrapNative,
 } from './lib/utils/helpers';
 export { Margins } from './lib/utils/Margins';
+// web engine
+export { QWebEngineView, QWebEngineViewSignals } from "./lib/QtWebEngine/QWebEngineView";
+export { QWebChannel } from "./lib/QtWebEngine/QWebChannel";
+export {
+  QWebEngineSettings,
+  UnknownUrlSchemePolicy
+} from "./lib/QtWebEngine/QWebEngineSettings";
 
 // Test:
 export { CacheTestQObject } from './lib/core/__test__/CacheTestQObject';

@@ -55,6 +55,38 @@ function getMiniQtConfig() {
                         link: `${MIRROR}/online/qtsdkrepository/windows_x86/desktop/qt6_641/qt.qt6.641.win64_msvc2019_64/6.4.1-0-202211101254qttools-Windows-Windows_10_21H2-MSVC2019-Windows-Windows_10_21H2-X86_64.7z`,
                         skipSetup: checkIfExists(path.resolve(qtHome, 'bin', 'windeployqt.exe')),
                     },
+                    {
+                        name: "Qt WebEngine",
+                        link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_641/qt.qt6.641.addons.qtwebengine.win64_msvc2019_64/6.4.1-0-202211101254qtwebengine-Windows-Windows_10_21H2-MSVC2019-Windows-Windows_10_21H2-X86_64.7z`,
+                        skipSetup: checkIfExists(
+                            path.resolve(
+                            qtHome,
+                            "lib",
+                            "cmake",
+                            "Qt6WebEngineQuick",
+                            "Qt6WebEngineQuickConfig.cmake"
+                            )
+                        )
+                    },
+                    {
+                        name: "Qt Declarative",
+                        link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_641/qt.qt6.641.win64_msvc2019_64/6.4.1-0-202211101254qtdeclarative-Windows-Windows_10_21H2-MSVC2019-Windows-Windows_10_21H2-X86_64.7z`,
+                        skipSetup: checkIfExists(path.resolve(qtHome, "bin", "Qt6Qml.dll"))
+                    },
+                    {
+                        name: "Qt WebChannel",
+                        link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_641/qt.qt6.641.addons.qtwebchannel.win64_msvc2019_64/6.4.1-0-202211101254qtwebchannel-Windows-Windows_10_21H2-MSVC2019-Windows-Windows_10_21H2-X86_64.7z`,
+                        skipSetup: checkIfExists(
+                            path.resolve(qtHome, "bin", "Qt6WebChannel.dll")
+                        )
+                    },
+                    {
+                        name: "Qt Positioning",
+                        link: `https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_641/qt.qt6.641.addons.qtpositioning.win64_msvc2019_64/6.4.1-0-202211101254qtpositioning-Windows-Windows_10_21H2-MSVC2019-Windows-Windows_10_21H2-X86_64.7z`,
+                        skipSetup: checkIfExists(
+                            path.resolve(qtHome, "bin", "Qt6Positioning.dll")
+                        )
+                    },
                 ],
             };
         }
