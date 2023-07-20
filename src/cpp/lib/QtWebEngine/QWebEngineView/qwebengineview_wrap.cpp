@@ -26,7 +26,7 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
   return exports;
 }
 
-NWebEngineView* QWebEngineViewWrap::getInternalInstance() {
+QWebEngineView* QWebEngineViewWrap::getInternalInstance() {
   return this->instance;
 }
 

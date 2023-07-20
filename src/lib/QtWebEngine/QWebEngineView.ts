@@ -1,24 +1,27 @@
+import addon from '../utils/addon';
 import { QUrl } from "../QtCore/QUrl";
 import { QWidget } from "../QtWidgets/QWidget";
 import { QWidgetSignals } from "../QtWidgets/QWidget";
 import { wrapperCache } from '../core/WrapperCache';
-import addon from "../utils/addon";
+import { NativeElement } from '../core/Component';
+import { checkIfNativeElement } from '../utils/helpers';
 
 import { QWebEngineSettings } from "./QWebEngineSettings";
 import { QWebEnginePage } from "./QWebEnginePage";
 
 
 export class QWebEngineView extends QWidget<QWebEngineViewSignals> {
-  constructor(parent?: QWidget<any>) {
-    let native;
-    if (parent != null) {
+  constructor(arg?: QWidget<QWidgetSignals> | NativeElement) {
+    let native: NativeElement;
+    if (checkIfNativeElement(arg)) {
+        native = arg as NativeElement;
+    } else if (arg != null) {
+        const parent = arg as QWidget;
         native = new addon.QWebEngineView(parent.native);
     } else {
-      native = new addon.QWebEngineView();
+        native = new addon.QWebEngineView();
     }
-    
     super(native);
-    this.native = native;
   }
   load(url: string) {
     this.setProperty("url", url);
@@ -39,6 +42,8 @@ export class QWebEngineView extends QWidget<QWebEngineViewSignals> {
   }
 }
 
+wrapperCache.registerWrapper('QWebEngineViewWrap', QWebEngineView);
+
 export interface QWebEngineViewSignals extends QWidgetSignals {
   loadFinished: (ok: boolean) => void;
   loadProgress: (progress: number) => void;
@@ -48,5 +53,4 @@ export interface QWebEngineViewSignals extends QWidgetSignals {
   titleChanged: (title: string) => void;
 }
 
-wrapperCache.registerWrapper('QWebEngineViewWrap', QWebEngineView);
 

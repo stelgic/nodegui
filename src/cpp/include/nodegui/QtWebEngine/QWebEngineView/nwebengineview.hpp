@@ -5,7 +5,7 @@
 #include <QtWebEngineWidgets/QWebEngineView>
 #include "QtWidgets/QWidget/qwidget_macro.h"
 
-class NWebEngineView : public QWebEngineView, public NodeWidget {
+class DLL_EXPORT NWebEngineView : public QWebEngineView, public NodeWidget {
   Q_OBJECT
   NODEWIDGET_IMPLEMENTATIONS(QWebEngineView)
  public:

@@ -11,14 +11,14 @@
 class DLL_EXPORT QWebChannelWrap : public Napi::ObjectWrap<QWebChannelWrap> {
   QOBJECT_WRAPPED_METHODS_DECLARATION
  private:
-  QPointer<NWebChannel> instance;
+  QPointer<QWebChannel> instance;
 
  public:
   static Napi::FunctionReference constructor;
   static Napi::Object init(Napi::Env env, Napi::Object exports);
   QWebChannelWrap(const Napi::CallbackInfo& info);
   ~QWebChannelWrap();
-  NWebChannel* getInternalInstance();
+  QWebChannel* getInternalInstance();
   // Wrapped methods
   Napi::Value registerObject(const Napi::CallbackInfo& info);
   Napi::Value deregisterObject(const Napi::CallbackInfo& info);

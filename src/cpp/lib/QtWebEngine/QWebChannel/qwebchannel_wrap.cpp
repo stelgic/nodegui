@@ -46,7 +46,7 @@ QWebChannelWrap::QWebChannelWrap(const Napi::CallbackInfo& info)
 
 QWebChannelWrap::~QWebChannelWrap() { extrautils::safeDelete(this->instance); }
 
-NWebChannel* QWebChannelWrap::getInternalInstance() { return this->instance; }
+QWebChannel* QWebChannelWrap::getInternalInstance() { return this->instance; }
 
 Napi::Value QWebChannelWrap::registerObject(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
