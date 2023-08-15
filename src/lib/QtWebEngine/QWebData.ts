@@ -25,7 +25,7 @@ export class QWebData extends QObject {
     return this.native.value();
   }
 
-  setValue(value: QVariant): void {
-    this.native.setValue(value);
+  setValue(values: QVariant[]): void {
+    this.native.setValue(values);
   }
 }

@@ -49,39 +49,36 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
 
   } else if (value.IsArray() && !value.IsTypedArray()) {
     // Note: This assumes an array of strings.
+    QVariantList values;
+    uint32_t first = 0;
     Napi::Array array = value.As<Napi::Array>();
     uint32_t len = array.Length();
-    if(len > 0) {
-      uint32_t first = 0;
-      if (array.Get(first).IsString()) {
-        QStringList values;
-        for (uint32_t i = 0; i < len; i++) {
-          std::string stringValue = array.Get(i).As<Napi::String>().Utf8Value();
-          values.append(QString::fromUtf8(stringValue.c_str()));
-        }
-        return new QVariant(values);
+    
+    if (array.Get(first).IsString()) {
+      for (uint32_t i = 0; i < len; i++) {
+        std::string stringValue = array.Get(i).As<Napi::String>().Utf8Value();
+        values.append(QString::fromUtf8(stringValue.c_str()));
       }
-
-      if (array.Get(first).IsNumber()) {
-        QVariantList values;
-        Napi::Value val = array.Get(first);
-        if (isNapiValueInt(env, val)) {
-          for (uint32_t i = 0; i < len; i++) {
-            int value = array.Get(i).ToNumber().Int32Value();
-            values.append(value);
-          }
-        }
-        else {
-          for (uint32_t i = 0; i < len; i++) {
-            double value = array.Get(i).ToNumber().DoubleValue();
-            values.append(value);
-          }
-        }
-         return new QVariant(values);
-      }
+      return new QVariant(values);
     }
-    QStringList empty;
-    return new QVariant(empty);
+
+    if (array.Get(first).IsNumber()) {
+      Napi::Value val = array.Get(first);
+      if (isNapiValueInt(env, val)) {
+        for (uint32_t i = 0; i < len; i++) {
+          int value = array.Get(i).ToNumber().Int32Value();
+          values.append(value);
+        }
+      }
+      else {
+        for (uint32_t i = 0; i < len; i++) {
+          double value = array.Get(i).ToNumber().DoubleValue();
+          values.append(value);
+        }
+      }
+        return new QVariant(values);
+    }
+    return new QVariant(values);
 
   } else if (value.IsArrayBuffer()) {
     // TODO: fix this

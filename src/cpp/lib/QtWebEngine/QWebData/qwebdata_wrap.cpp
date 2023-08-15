@@ -56,10 +56,14 @@ Napi::Value QWebDataWrap::getValue(const Napi::CallbackInfo& info) {
 
 Napi::Value QWebDataWrap::setValue(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  Napi::Value value = info[0];
-  QVariant* variant = extrautils::convertToQVariant(env, value);
   QVariantList values;
-  values.append(*variant);
+  Napi::Array array = info[0].As<Napi::Array>();
+
+  for(int i=0; i < array.Length(); ++i) {
+    Napi::Value value = array.Get(i);
+    QVariant* variant = extrautils::convertToQVariant(env, value);
+    values.append(*variant);
+  }
   this->instance->setValue(values);
   return env.Null();
 }
