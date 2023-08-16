@@ -94,7 +94,7 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
       }
     } else if (array.TypedArrayType() == napi_bigint64_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
-        long int value = array.Get(i).ToNumber().Int64Value();
+        int64_t value = array.Get(i).ToNumber().Int64Value();
         values.append(value);
       }
     } else if(array.TypedArrayType() == napi_float32_array) {

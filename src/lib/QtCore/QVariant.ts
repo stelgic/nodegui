@@ -1,10 +1,11 @@
+import { isFloat64Array } from 'util/types';
 import { NativeElement, Component } from '../core/Component';
 import addon from '../utils/addon';
 import { checkIfNativeElement } from '../utils/helpers';
 import { QObject } from './QObject';
 import { QRect } from './QRect';
 
-export type QVariantType = NativeElement | string | string[] | number| number[] | Int32Array | Float32Array | boolean | QRect | QObject | QVariant;
+export type QVariantType = NativeElement | string | string[] | number| number[] | Int32Array | BigInt64Array | Float32Array | Float64Array | boolean | QRect | QObject | QVariant;
 
 export class QVariant extends Component {
     constructor();
