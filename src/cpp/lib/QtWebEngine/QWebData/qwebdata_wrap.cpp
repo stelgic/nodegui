@@ -50,7 +50,7 @@ Napi::Value QWebDataWrap::getValue(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   QVariant value = this->instance->value().at(0);
   auto valueWrap = QVariantWrap::constructor.New(
-      {Napi::External<QVariant>::New(env, new QVariant(value.toMap()))});
+      {Napi::External<QVariant>::New(env, new QVariant(value))});
   return valueWrap;
 }
 
