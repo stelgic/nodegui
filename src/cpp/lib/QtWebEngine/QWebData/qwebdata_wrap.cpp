@@ -48,10 +48,16 @@ QWebDataWrap::QWebDataWrap(const Napi::CallbackInfo& info)
 
 Napi::Value QWebDataWrap::getValue(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  QVariant value = this->instance->value().at(0);
-  auto valueWrap = QVariantWrap::constructor.New(
-      {Napi::External<QVariant>::New(env, new QVariant(value))});
-  return valueWrap;
+  Napi::Array array = new Napi::Array();
+  qint64 len = this->instance->value().length();
+
+  for(qint64 i=0; i < len; ++i) {
+    QVariant value = this->instance->value().at(0);
+    auto valueWrap = QVariantWrap::constructor.New(
+        {Napi::External<QVariant>::New(env, new QVariant(value))});
+    array.Set(i, valueWrap);
+  }
+  return array;
 }
 
 Napi::Value QWebDataWrap::setValue(const Napi::CallbackInfo& info) {
@@ -59,7 +65,7 @@ Napi::Value QWebDataWrap::setValue(const Napi::CallbackInfo& info) {
   QVariantList values;
   Napi::Array array = info[0].As<Napi::Array>();
 
-  for(int i=0; i < array.Length(); ++i) {
+  for(uint32_t i=0; i < array.Length(); ++i) {
     Napi::Value value = array.Get(i);
     QVariant* variant = extrautils::convertToQVariant(env, value);
     values.append(*variant);
