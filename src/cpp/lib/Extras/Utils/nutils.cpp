@@ -94,9 +94,9 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
       }
     } else if (array.TypedArrayType() == napi_bigint64_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
-        Napi::BigInt bigVal = array.Get(i);
-        int64_t value = array.Get(i).ToNumber().Int64Value();
-        values.append(static_cast<qint64>(value));
+        std::string value = array.Get(i).ToString();
+        int64_t bigVal = std::stoll(value);
+        values.append(static_cast<qint64>(bigVal));
       }
     } else if(array.TypedArrayType() == napi_float32_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
