@@ -92,6 +92,11 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
         int32_t value = array.Get(i).ToNumber().Int32Value();
         values.append(value);
       }
+    } else if (array.TypedArrayType() == napi_int64_array) {
+      for (uint32_t i = 0; i < array.ElementLength(); i++) {
+        int64_t value = array.Get(i).ToNumber().Int64Value();
+        values.append(value);
+      }
     } else if(array.TypedArrayType() == napi_float32_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
         float value = array.Get(i).ToNumber().FloatValue();
