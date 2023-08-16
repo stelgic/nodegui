@@ -95,7 +95,7 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
     } else if (array.TypedArrayType() == napi_bigint64_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
         int64_t value = array.Get(i).ToNumber().Int64Value();
-        values.append(value);
+        values.append(static_cast<qlonglong>(value));
       }
     } else if(array.TypedArrayType() == napi_float32_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
@@ -104,7 +104,7 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
       }
     } else if(array.TypedArrayType() == napi_float64_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
-        double value = array.Get(i).ToNumber().FloatValue();
+        double value = array.Get(i).ToNumber().DoubleValue();
         values.append(value);
       }
     }
