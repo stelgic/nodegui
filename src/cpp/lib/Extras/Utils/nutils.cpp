@@ -94,7 +94,7 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
       }
     } else if (array.TypedArrayType() == napi_bigint64_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
-        Napi::BigInt bigVal = Napi::BigInt::New(Napi::Env env, array.Get(i));
+        Napi::BigInt bigVal = Napi::BigInt::New(env, array.Get(i));
         int64_t value = array.Get(i).ToNumber().Int64Value();
         values.append(static_cast<qint64>(value));
       }
