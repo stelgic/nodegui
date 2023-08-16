@@ -48,7 +48,7 @@ QWebDataWrap::QWebDataWrap(const Napi::CallbackInfo& info)
 
 Napi::Value QWebDataWrap::getValue(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  Napi::Array array = new Napi::Array::New(env);
+  Napi::Array array = Napi::Array::New(env);
   qint64 len = this->instance->value().length();
 
   for(qint64 i=0; i < len; ++i) {
