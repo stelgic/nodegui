@@ -40,6 +40,10 @@ export class QWebEngineView extends QWidget<QWebEngineViewSignals> {
   setHtml(html: string, baseUrl: string | null): QWebEnginePage {
     return this.native.setHtml(html, baseUrl);
   }
+
+  setZoomFactor(factor: number) {
+    this.native.setZoomFactor(factor);
+  }
 }
 
 wrapperCache.registerWrapper('QWebEngineViewWrap', QWebEngineView);

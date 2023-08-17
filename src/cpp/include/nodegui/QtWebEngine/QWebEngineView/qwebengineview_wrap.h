@@ -24,4 +24,5 @@ class DLL_EXPORT QWebEngineViewWrap : public Napi::ObjectWrap<QWebEngineViewWrap
   Napi::Value settings(const Napi::CallbackInfo& info);
   Napi::Value page(const Napi::CallbackInfo& info);
   Napi::Value setHtml(const Napi::CallbackInfo& info);
+  Napi::Value setZoomFactor(const Napi::CallbackInfo& info);
 };
