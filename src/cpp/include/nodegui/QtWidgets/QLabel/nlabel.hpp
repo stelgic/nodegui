@@ -31,21 +31,21 @@ class DLL_EXPORT NLabel : public QLabel, public NodeWidget {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QMouseEventWrap::constructor.New(
-          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(*event))});
+          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(event))});
       this->emitOnNode.Call({Napi::String::New(env, "pressed"), instance});
     });
     QObject::connect(this, &NLabel::released, [=](QMouseEvent *event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QMouseEventWrap::constructor.New(
-          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(*event))});
+          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(event))});
       this->emitOnNode.Call({Napi::String::New(env, "released"), instance});
     });
     QObject::connect(this, &NLabel::doubleClicked, [=](QMouseEvent *event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QMouseEventWrap::constructor.New(
-          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(*event))});
+          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(event))});
       this->emitOnNode.Call({Napi::String::New(env, "doubleClicked"), instance});
     });
   }
