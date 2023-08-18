@@ -30,29 +30,29 @@ class DLL_EXPORT NLabel : public QLabel, public NodeWidget {
     QObject::connect(this, &QLabel::mousePressEvent, [=](QMouseEvent *event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
-      auto instance = QRectWrap::constructor.New(
-          {Napi::External<QRect>::New(env, new QMouseEvent(event))});
+      auto instance = QMouseEventWrap::constructor.New(
+          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(*event))});
       this->emitOnNode.Call({Napi::String::New(env, "mousePressEvent"), instance});
     });
     QObject::connect(this, &QLabel::mouseReleaseEvent, [=](QMouseEvent *event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
-      auto instance = QRectWrap::constructor.New(
-          {Napi::External<QRect>::New(env, new QMouseEvent(event))});
+      auto instance = QMouseEventWrap::constructor.New(
+          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(*event))});
       this->emitOnNode.Call({Napi::String::New(env, "mouseReleaseEvent"), instance});
     });
     QObject::connect(this, &QLabel::mouseMoveEvent, [=](QMouseEvent *event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
-      auto instance = QRectWrap::constructor.New(
-          {Napi::External<QRect>::New(env, new QMouseEvent(event))});
+      auto instance = QMouseEventWrap::constructor.New(
+          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(*event))});
       this->emitOnNode.Call({Napi::String::New(env, "mouseMoveEvent"), instance});
     });
     QObject::connect(this, &QLabel::mouseDoubleClickEvent, [=](QMouseEvent *event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
-      auto instance = QRectWrap::constructor.New(
-          {Napi::External<QRect>::New(env, new QMouseEvent(event))});
+      auto instance = QMouseEventWrap::constructor.New(
+          {Napi::External<QMouseEvent>::New(env, new QMouseEvent(*event))});
       this->emitOnNode.Call({Napi::String::New(env, "mouseDoubleClickEvent"), instance});
     });
   }
