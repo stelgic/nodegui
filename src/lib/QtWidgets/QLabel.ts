@@ -156,8 +156,7 @@ wrapperCache.registerWrapper('QLabelWrap', QLabel);
 export interface QLabelSignals extends QFrameSignals {
     linkActivated: (link: string) => void;
     linkHovered: (link: string) => void;
-    mousePressEvent: (event: QMouseEvent) => void;
-    mouseReleaseEvent: (event: QMouseEvent) => void;
-    mouseMoveEvent: (event: QMouseEvent) => void;
-    mouseDoubleClickEvent: (event: QMouseEvent) => void;
+    pressed: (event: QMouseEvent) => void;
+    released: (event: QMouseEvent) => void;
+    doubleClicked: (event: QMouseEvent) => void;
 }
