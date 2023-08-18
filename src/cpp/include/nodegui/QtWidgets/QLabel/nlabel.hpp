@@ -27,50 +27,50 @@ class DLL_EXPORT NLabel : public QLabel, public NodeWidget {
       this->emitOnNode.Call({Napi::String::New(env, "linkHovered"),
                              Napi::String::New(env, link.toStdString())});
     });
-    QObject::connect(this, &NLabel::pressed, [=](const QMouseEvent& event) {
+    QObject::connect(this, &NLabel::pressed, [=](QMouseEvent* event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QMouseEventWrap::constructor.New(
-        {Napi::External<QMouseEvent>::New(env, new QMouseEvent(event))}); 
+        {Napi::External<QMouseEvent>::New(env, event)}); 
       this->emitOnNode.Call({Napi::String::New(env, "pressed"), instance});
     });
-    QObject::connect(this, &NLabel::released, [=](const QMouseEvent& event) {
+    QObject::connect(this, &NLabel::released, [=](QMouseEvent* event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QMouseEventWrap::constructor.New(
-        {Napi::External<QMouseEvent>::New(env, new QMouseEvent(event))}); 
+        {Napi::External<QMouseEvent>::New(env, event)}); 
       this->emitOnNode.Call({Napi::String::New(env, "released"), instance});
     });
-    QObject::connect(this, &NLabel::doubleClicked, [=](const QMouseEvent& event) {
+    QObject::connect(this, &NLabel::doubleClicked, [=](QMouseEvent* event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QMouseEventWrap::constructor.New(
-        {Napi::External<QMouseEvent>::New(env, new QMouseEvent(event))}); 
+        {Napi::External<QMouseEvent>::New(env, event)}); 
       this->emitOnNode.Call({Napi::String::New(env, "doubleClicked"), instance});
     });
   }
 
 signals:
-  void pressed(const QMouseEvent& event);
-  void released(const QMouseEvent& event);
-  void doubleClicked(const QMouseEvent& event);
+  void pressed(QMouseEvent* event);
+  void released(QMouseEvent* event);
+  void doubleClicked(QMouseEvent* event);
 
 protected:
   virtual void mousePressEvent(QMouseEvent *event) override 
   {
-    emit pressed(*event);
+    emit pressed(event);
     QLabel::mousePressEvent(event);
   }
 
   virtual void mouseReleaseEvent(QMouseEvent *event) override 
   {
-    emit released(*event);
+    emit released(event);
     QLabel::mouseReleaseEvent(event);
   }
 
   virtual void mouseDoubleClickEvent(QMouseEvent *event) override 
   {
-    emit doubleClicked(*event);
+    emit doubleClicked(event);
     QLabel::mouseDoubleClickEvent(event);
   }
 };
