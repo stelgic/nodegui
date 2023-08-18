@@ -204,12 +204,9 @@ Napi::Value QMenuBarWrap::setActiveAction(const Napi::CallbackInfo& info) {
 
 Napi::Value QMenuBarWrap::setCornerWidget(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  Napi::Object widgetWidgetObject = info[0].As<Napi::Object>();
-  NodeWidgetWrap* widgetWidgetWrap =
-      Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(widgetWidgetObject);
-  QWidget* widget = widgetWidgetWrap->getInternalInstance();
-  Qt::Corner corner =
-      static_cast<Qt::Corner>(info[1].As<Napi::Number>().Int32Value());
-  this->instance->setCornerWidget(widget, corner);
+  Napi::Object qwidgetObject = info[0].As<Napi::Object>();
+  NodeWidgetWrap* widgetWrap = Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(qwidgetObject);
+  Qt::Corner corner = static_cast<Qt::Corner>(info[1].As<Napi::Number>().Int32Value());
+  this->instance->setCornerWidget(widgetWrap->getInternalInstance(), corner);
   return env.Null();
 }
