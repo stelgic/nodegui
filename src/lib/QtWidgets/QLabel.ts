@@ -3,6 +3,7 @@ import { QWidget, QWidgetSignals } from './QWidget';
 import { QFrame, QFrameSignals } from './QFrame';
 import { QPixmap } from '../QtGui/QPixmap';
 import { QMovie } from '../QtGui/QMovie';
+import { QMouseEvent } from '../QtGui/QEvent/QMouseEvent';
 import { AlignmentFlag } from '../QtEnums/AlignmentFlag';
 import { TextFormat } from '../QtEnums/TextFormat';
 import { TextInteractionFlag } from '../QtEnums';
@@ -155,4 +156,8 @@ wrapperCache.registerWrapper('QLabelWrap', QLabel);
 export interface QLabelSignals extends QFrameSignals {
     linkActivated: (link: string) => void;
     linkHovered: (link: string) => void;
+    mousePressEvent: (event: QMouseEvent) => void;
+    mouseReleaseEvent: (event: QMouseEvent) => void;
+    mouseMoveEvent: (event: QMouseEvent) => void;
+    mouseDoubleClickEvent: (event: QMouseEvent) => void;
 }
