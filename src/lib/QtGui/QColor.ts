@@ -59,6 +59,9 @@ export class QColor extends Component {
         return this.native.rgba();
     }
 
+    static fromString(color: string): QColor {
+        return addon.QColor.fromString(color);
+    }
     static fromQVariant(variant: QVariant): QColor {
         return new QColor(addon.QColor.fromQVariant(variant.native));
     }
