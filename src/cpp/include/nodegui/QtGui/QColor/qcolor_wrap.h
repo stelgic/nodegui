@@ -32,5 +32,6 @@ class DLL_EXPORT QColorWrap : public Napi::ObjectWrap<QColorWrap> {
 };
 
 namespace StaticQColorWrapMethods {
+DLL_EXPORT Napi::Value fromString(const Napi::CallbackInfo& info);
 DLL_EXPORT Napi::Value fromQVariant(const Napi::CallbackInfo& info);
 }  // namespace StaticQColorWrapMethods

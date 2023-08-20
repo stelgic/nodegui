@@ -20,6 +20,7 @@ Napi::Object QColorWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("alpha", &QColorWrap::alpha),
        InstanceMethod("rgb", &QColorWrap::rgb),
        InstanceMethod("rgba", &QColorWrap::rgba),
+       StaticMethod("fromString", &StaticQColorWrapMethods::fromString),
        StaticMethod("fromQVariant", &StaticQColorWrapMethods::fromQVariant),
        COMPONENT_WRAPPED_METHODS_EXPORT_DEFINE(QColorWrap)});
   constructor = Napi::Persistent(func);
@@ -116,6 +117,11 @@ Napi::Value QColorWrap::rgba(const Napi::CallbackInfo& info) {
   return Napi::Value::From(env, this->instance->rgba());
 }
 
+Napi::Value QColorWrap::fromString(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  std::string strColor = info[0].As<Napi::String>().Utf8Value().c_str();
+  return Napi::Value::From(env, strColor);
+}
 Napi::Value StaticQColorWrapMethods::fromQVariant(
     const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
