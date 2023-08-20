@@ -121,9 +121,9 @@ Napi::Value StaticQColorWrapMethods::QColorWrap::fromString(
     const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   std::string strColor = info[0].As<Napi::String>().Utf8Value().c_str();
+  QColor color = QColor::fromString(QString::fromStdString(strColor));
   auto colorWrap = QColorWrap::constructor.New(
-      {Napi::External<QColor>::New(env, 
-      QColor::fromString(QString::fromStdString(strColor)))});
+      {Napi::External<QColor>::New(env, new QColor(color))});
   return colorWrap;
 }
 Napi::Value StaticQColorWrapMethods::fromQVariant(
