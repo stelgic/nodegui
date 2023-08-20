@@ -117,7 +117,7 @@ Napi::Value QColorWrap::rgba(const Napi::CallbackInfo& info) {
   return Napi::Value::From(env, this->instance->rgba());
 }
 
-Napi::Value StaticQColorWrapMethods::QColorWrap::fromString(
+Napi::Value StaticQColorWrapMethods::fromString(
     const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   std::string strColor = info[0].As<Napi::String>().Utf8Value().c_str();
