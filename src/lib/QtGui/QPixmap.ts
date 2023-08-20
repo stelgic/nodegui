@@ -71,7 +71,7 @@ export class QPixmap extends Component {
         return this.native.width();
     }
     fill(color: QColor): void {
-        return this.native.fill(color);
+        this.native.fill(color);
     }
     static fromImage(image: QImage, flags: ImageConversionFlag): QPixmap {
         const native = addon.QPixmap.fromImage(image.native, flags);
