@@ -142,9 +142,8 @@ Napi::Value QPixmapWrap::width(const Napi::CallbackInfo& info) {
 Napi::Value QPixmapWrap::fill(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Object colorObject = info[0].As<Napi::Object>();
-  QColorWrap* colorWrap =
-      Napi::ObjectWrap<QColorWrap>::Unwrap(colorObject);
-  this->instance->fill(*colorWrap->getInternalInstance());
+  QColor* color = Napi::ObjectWrap<QColorWrap>::Unwrap(colorObject);
+  this->instance->fill(*color);
   return env.Null();
 }
 
