@@ -4,6 +4,7 @@ import { AspectRatioMode, ImageConversionFlag, TransformationMode } from '../QtE
 import { checkIfNativeElement } from '../utils/helpers';
 import { QVariant } from '../QtCore/QVariant';
 import { QImage } from './QImage';
+import { QColor } from './QColor';
 
 /**
  
@@ -68,6 +69,9 @@ export class QPixmap extends Component {
     }
     width(): number {
         return this.native.width();
+    }
+    fill(color: QColor): void {
+        return this.native.fill(color);
     }
     static fromImage(image: QImage, flags: ImageConversionFlag): QPixmap {
         const native = addon.QPixmap.fromImage(image.native, flags);

@@ -3,6 +3,7 @@
 #include "Extras/Utils/nutils.h"
 #include "QtCore/QVariant/qvariant_wrap.h"
 #include "QtGui/QImage/qimage_wrap.h"
+#include "QtGui/QColor/qcolor_wrap.h"
 
 Napi::FunctionReference QPixmapWrap::constructor;
 
@@ -17,6 +18,7 @@ Napi::Object QPixmapWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("scaled", &QPixmapWrap::scaled),
        InstanceMethod("height", &QPixmapWrap::height),
        InstanceMethod("width", &QPixmapWrap::width),
+       InstanceMethod("fill", &QPixmapWrap::fill),
        StaticMethod("fromImage", &QPixmapWrap::fromImage),
        StaticMethod("fromQVariant", &StaticQPixmapWrapMethods::fromQVariant),
        COMPONENT_WRAPPED_METHODS_EXPORT_DEFINE(QPixmapWrap)});
@@ -136,6 +138,14 @@ Napi::Value QPixmapWrap::height(const Napi::CallbackInfo& info) {
 Napi::Value QPixmapWrap::width(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   return Napi::Value::From(env, this->instance->width());
+}
+Napi::Value QPixmapWrap::fill(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  Napi::Object colorObject = info[0].As<Napi::Object>();
+  QColorWrap* colorWrap =
+      Napi::ObjectWrap<QColorWrap>::Unwrap(colorObject);
+  this->instance->fill(colorWrap->getInternalInstance());
+  return env.Null();
 }
 
 Napi::Value QPixmapWrap::fromImage(const Napi::CallbackInfo& info) {
