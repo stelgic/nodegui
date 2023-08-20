@@ -144,7 +144,7 @@ Napi::Value QPixmapWrap::fill(const Napi::CallbackInfo& info) {
   Napi::Object colorObject = info[0].As<Napi::Object>();
   QColorWrap* colorWrap =
       Napi::ObjectWrap<QColorWrap>::Unwrap(colorObject);
-  this->instance->fill(colorWrap->getInternalInstance());
+  this->instance->fill(*colorWrap->getInternalInstance());
   return env.Null();
 }
 
