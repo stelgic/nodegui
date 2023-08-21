@@ -20,6 +20,7 @@ class DLL_EXPORT NScrollArea : public QScrollArea, public NodeWidget {
       auto eventWrap = QResizeEventWrap::constructor.New(
         {Napi::External<QResizeEvent>::New(env, event)}); 
       this->emitOnNode.Call({Napi::String::New(env, "resizeEvent"), eventWrap});
+    });
   }
 
   // By-pass `protected` access and expose it.
