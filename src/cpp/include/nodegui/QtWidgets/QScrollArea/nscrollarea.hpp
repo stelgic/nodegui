@@ -14,7 +14,7 @@ class DLL_EXPORT NScrollArea : public QScrollArea, public NodeWidget {
 
   virtual void connectSignalsToEventEmitter() { 
     QABSTRACTSCROLLAREA_SIGNALS 
-    QObject::connect(this, &QScrollArea::resizeEvent, [=](QResizeEvent* event) {
+    QObject::connect(this, &QScrollArea::resized, [=](QResizeEvent* event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto eventWrap = QResizeEventWrap::constructor.New(
@@ -28,4 +28,14 @@ class DLL_EXPORT NScrollArea : public QScrollArea, public NodeWidget {
     QScrollArea::setViewportMargins(left, top, right, bottom);
   }
   QMargins viewportMargins() const { return QScrollArea::viewportMargins(); }
+
+signals:
+  void resized(QResizeEvent* event);
+
+protected:
+  virtual void resizeEvent(QResizeEvent *event) override 
+  {
+    emit resized(event);
+    QScrollArea::resizeEvent(event);
+  }
 };

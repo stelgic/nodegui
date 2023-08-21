@@ -6,6 +6,7 @@ import { AlignmentFlag } from '../QtEnums';
 import { Margins } from '../utils/Margins';
 import { wrapperCache } from '../core/WrapperCache';
 import { checkIfNativeElement } from '../utils/helpers';
+import { QResizeEvent } from '../QtGui/QEvent/QResizeEvent';
 
 /**
 
@@ -88,4 +89,6 @@ export class QScrollArea extends QAbstractScrollArea<QScrollAreaSignals> {
 }
 wrapperCache.registerWrapper('QScrollAreaWrap', QScrollArea);
 
-export type QScrollAreaSignals = QAbstractScrollAreaSignals;
+export interface QScrollAreaSignals extends QAbstractScrollAreaSignals {
+    pressed: (event: QResizeEvent) => void;
+}
