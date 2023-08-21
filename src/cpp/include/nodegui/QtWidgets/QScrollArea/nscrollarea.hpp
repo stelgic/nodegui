@@ -14,7 +14,7 @@ class DLL_EXPORT NScrollArea : public QScrollArea, public NodeWidget {
 
   virtual void connectSignalsToEventEmitter() { 
     QABSTRACTSCROLLAREA_SIGNALS 
-    QObject::connect(this, &QScrollArea::resized, [=](QResizeEvent* event) {
+    QObject::connect(this, &NScrollArea::resized, [=](QResizeEvent* event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto eventWrap = QResizeEventWrap::constructor.New(
