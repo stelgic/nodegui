@@ -5,6 +5,7 @@
 #include "Extras/Export/export.h"
 #include "QtWidgets/QAbstractScrollArea/qabstractscrollarea_macro.h"
 #include "core/NodeWidget/nodewidget.h"
+#include "QtGui/QEvent/QResizeEvent/qresizeevent_wrap.h"
 
 class DLL_EXPORT NScrollArea : public QScrollArea, public NodeWidget {
   Q_OBJECT
