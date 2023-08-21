@@ -90,5 +90,5 @@ export class QScrollArea extends QAbstractScrollArea<QScrollAreaSignals> {
 wrapperCache.registerWrapper('QScrollAreaWrap', QScrollArea);
 
 export interface QScrollAreaSignals extends QAbstractScrollAreaSignals {
-    pressed: (event: QResizeEvent) => void;
+    resizedEvent: (event: QResizeEvent) => void;
 }
