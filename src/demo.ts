@@ -5,6 +5,11 @@ import { QPushButton } from './lib/QtWidgets/QPushButton';
 import { QWidget } from './lib/QtWidgets/QWidget';
 import { QWebEngineView } from "./lib/QtWebEngine/QWebEngineView";
 import { QWebChannel } from "./lib/QtWebEngine/QWebChannel";
+import { QComboBox } from './lib/QtWidgets/QComboBox';
+
+import { QApplication } from './lib/QtGui/QApplication';
+
+QApplication.instance().setProperty('Qt::AA_UseDesktopOpenGL', false);
 
 const win = new QMainWindow();
 win.setWindowTitle('Hello World');
@@ -25,6 +30,9 @@ label2.setText('World');
 label2.setInlineStyle(`
   color: red;
 `);
+
+const combo = new QComboBox();
+combo.setPlaceholderText('choose category');
 
 const webview = new QWebEngineView();
 webview.setInlineStyle("align-self:'stretch';");
@@ -47,6 +55,7 @@ webview.page().setWebChannel(channel);
 rootLayout.addWidget(label);
 rootLayout.addWidget(button);
 rootLayout.addWidget(label2);
+rootLayout.addWidget(combo);
 rootLayout.addWidget(webview);
 win.setCentralWidget(centralWidget);
 win.setStyleSheet(
