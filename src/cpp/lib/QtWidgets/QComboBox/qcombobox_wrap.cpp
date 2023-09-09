@@ -374,7 +374,7 @@ Napi::Value QComboBoxWrap::setMaxCount(const Napi::CallbackInfo& info) {
 }
 Napi::Value QComboBoxWrap::setPlaceholderText(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  std::string value = info[1].As<Napi::String>().Utf8Value();
+  std::string value = info[0].As<Napi::String>().Utf8Value();
   QString plcHolder = QString::fromUtf8(value.c_str());
   this->instance->setPlaceholderText(plcHolder);
   return env.Null();
