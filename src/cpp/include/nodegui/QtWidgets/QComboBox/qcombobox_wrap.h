@@ -57,6 +57,7 @@ class DLL_EXPORT QComboBoxWrap : public Napi::ObjectWrap<QComboBoxWrap> {
   Napi::Value setFrame(const Napi::CallbackInfo& info);
   Napi::Value setItemText(const Napi::CallbackInfo& info);
   Napi::Value setMaxCount(const Napi::CallbackInfo& info);
+  Napi::Value setPlaceholderText(const Napi::CallbackInfo& info);
   Napi::Value showPopup(const Napi::CallbackInfo& info);
   Napi::Value insertPolicy(const Napi::CallbackInfo& info);
   Napi::Value setInsertPolicy(const Napi::CallbackInfo& info);
