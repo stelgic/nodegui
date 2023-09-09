@@ -178,8 +178,8 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
     setSizeAdjustPolicy(policy: SizeAdjustPolicy): void {
         this.native.setSizeAdjustPolicy(policy);
     }
-    setPlaceholderText(text: string) {
-        this.native.setPlaceholderText(text);
+    setPlaceholderText(placeholder: string) {
+        this.native.setPlaceholderText(placeholder);
     }
     sizeAdjustPolicy(): number {
         return this.native.sizeAdjustPolicy();
