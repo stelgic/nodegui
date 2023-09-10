@@ -67,7 +67,7 @@ class DLL_EXPORT NComboBox : public QComboBox, public NodeWidget {
                                  Napi::String::New(env, text.toStdString())});
         });
     QObject::connect(
-        this, &QComboBox::showEvent, [=](QShowEvent* event) {
+        this, &NComboBox::showing, [=](QShowEvent* event) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           auto instance = QShowEventWrap::constructor.New(
@@ -75,4 +75,7 @@ class DLL_EXPORT NComboBox : public QComboBox, public NodeWidget {
           this->emitOnNode.Call({Napi::String::New(env, "showEvent"), instance});
         });
   }
+
+signals:
+  void showing(QShowEvent* event);
 };
