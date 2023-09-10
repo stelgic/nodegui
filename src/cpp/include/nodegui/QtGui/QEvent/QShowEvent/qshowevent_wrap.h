@@ -6,7 +6,6 @@
 
 #include "Extras/Export/export.h"
 #include "QtGui/QEvent/QEvent/qevent_macro.h"
-#include "QtGui/QEvent/QInputEvent/qinputevent_macro.h"
 #include "core/Component/component_macro.h"
 
 class DLL_EXPORT QShowEventWrap : public Napi::ObjectWrap<QShowEventWrap> {
