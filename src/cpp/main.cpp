@@ -28,7 +28,7 @@
 #include "QtGui/QCursor/qcursor_wrap.h"
 #include "QtGui/QDrag/qdrag_wrap.h"
 #include "QtGui/QEvent/QDragLeaveEvent/qdragleaveevent_wrap.h"
-#include "QtGui/QEvent/QDragLeaveEvent/qshowevent_wrap.h"
+#include "QtGui/QEvent/QShowEvent/qshowevent_wrap.h"
 #include "QtGui/QEvent/QDragMoveEvent/qdragmoveevent_wrap.h"
 #include "QtGui/QEvent/QDropEvent/qdropevent_wrap.h"
 #include "QtGui/QEvent/QInputMethodEvent/qinputmethodevent_wrap.h"
