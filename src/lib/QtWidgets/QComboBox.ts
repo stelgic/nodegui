@@ -209,7 +209,7 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
     setEditText(text: string): void {
         this.native.setEditText(text);
     }
-    setStyleSheet(styleSheet: string, postprocess = true): void {
+    setStyleSheet(styleSheet: string, postprocess: boolean = false): void {
         if (postprocess) {
             const preparedSheet = StyleSheet.create(styleSheet);
             this.native.setStyleSheet(preparedSheet);
