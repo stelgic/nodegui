@@ -28,6 +28,7 @@
 #include "QtGui/QCursor/qcursor_wrap.h"
 #include "QtGui/QDrag/qdrag_wrap.h"
 #include "QtGui/QEvent/QDragLeaveEvent/qdragleaveevent_wrap.h"
+#include "QtGui/QEvent/QDragLeaveEvent/qshowevent_wrap.h"
 #include "QtGui/QEvent/QDragMoveEvent/qdragmoveevent_wrap.h"
 #include "QtGui/QEvent/QDropEvent/qdropevent_wrap.h"
 #include "QtGui/QEvent/QInputMethodEvent/qinputmethodevent_wrap.h"
@@ -215,6 +216,7 @@ Napi::Object Main(Napi::Env env, Napi::Object exports) {
   QTabWidgetWrap::init(env, exports);
   QLineEditWrap::init(env, exports);
   QKeyEventWrap::init(env, exports);
+  QShowEventWrap::init(env, exports);
   QMouseEventWrap::init(env, exports);
   QMoveEventWrap::init(env, exports);
   QWheelEventWrap::init(env, exports);

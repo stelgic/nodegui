@@ -25,6 +25,7 @@ export { QFontMetricsF } from './lib/QtGui/QFontMetricsF';
 export { QInputMethodEvent } from './lib/QtGui/QEvent/QInputMethodEvent';
 export { QInputMethodQueryEvent } from './lib/QtGui/QEvent/QInputMethodQueryEvent';
 export { QKeyEvent } from './lib/QtGui/QEvent/QKeyEvent';
+export { QShowEvent } from './lib/QtGui/QEvent/QShowEvent';
 export { QMouseEvent } from './lib/QtGui/QEvent/QMouseEvent';
 export { QMoveEvent } from './lib/QtGui/QEvent/QMoveEvent';
 export { QWheelEvent } from './lib/QtGui/QEvent/QWheelEvent';
