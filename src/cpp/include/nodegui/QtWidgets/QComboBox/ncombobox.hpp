@@ -66,11 +66,21 @@ class DLL_EXPORT NComboBox : public QComboBox, public NodeWidget {
                                  Napi::String::New(env, text.toStdString())});
         });
     QObject::connect(
-        this, &QComboBox::showEvent, [=](const QShowEvent &evt) {
+        this, &QComboBox::showing, [=](const QShowEvent &evt) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call({Napi::String::New(env, "showEvent"),
                                  Napi::Boolean::New(env, true)});
         });
+  }
+
+signals:
+  void showing(QMouseEvent* event);
+
+protected:
+  virtual void showEvent(QShowEvent *event) override 
+  {
+    emit showing(event);
+    QComboBox::showEvent(event);
   }
 };
