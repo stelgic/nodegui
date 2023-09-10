@@ -3,6 +3,7 @@
 
 #include "Extras/Export/export.h"
 #include "QtWidgets/QWidget/qwidget_macro.h"
+#include "QtGui/QEvent/QShowEvent/qshowevent_wrap.h"
 #include "core/NodeWidget/nodewidget.h"
 #include "napi.h"
 
@@ -66,21 +67,12 @@ class DLL_EXPORT NComboBox : public QComboBox, public NodeWidget {
                                  Napi::String::New(env, text.toStdString())});
         });
     QObject::connect(
-        this, &NComboBox::showing, [=](QShowEvent &evt) {
+        this, &NComboBox::showEvent, [=](QShowEvent &evt) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
-          this->emitOnNode.Call({Napi::String::New(env, "showEvent"),
-                                 Napi::Boolean::New(env, true)});
+          auto instance = QShowEventWrap::constructor.New(
+            {Napi::External<QShowEvent>::New(env, event)}); 
+          this->emitOnNode.Call({Napi::String::New(env, "showEvent"), instance});
         });
-  }
-
-signals:
-  void showing(QShowEvent* event);
-
-public:
-  virtual void showEvent(QShowEvent *event) override 
-  {
-    emit showing(event);
-    QComboBox::showEvent(event);
   }
 };
