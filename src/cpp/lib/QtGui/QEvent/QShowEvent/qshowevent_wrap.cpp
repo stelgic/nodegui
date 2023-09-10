@@ -12,8 +12,7 @@ Napi::Object QShowEventWrap::init(Napi::Env env, Napi::Object exports) {
   Napi::Function func = DefineClass(
       env, CLASSNAME,
       {COMPONENT_WRAPPED_METHODS_EXPORT_DEFINE(QShowEventWrap)
-        QEVENT_WRAPPED_METHODS_EXPORT_DEFINE(QShowEventWrap)
-        QINPUTEVENT_WRAPPED_METHODS_EXPORT_DEFINE(QShowEventWrap)});
+        QEVENT_WRAPPED_METHODS_EXPORT_DEFINE(QShowEventWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
   return exports;
