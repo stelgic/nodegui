@@ -3,6 +3,7 @@ import { QWidget, QWidgetSignals } from './QWidget';
 import { NativeElement } from '../core/Component';
 import { SizeAdjustPolicy } from '../QtEnums';
 import { QIcon } from '../QtGui/QIcon';
+import { QLineEdit } from './QLineEdit';
 import { QVariant } from '../QtCore/QVariant';
 import { QStandardItemModel } from './QStandardItemModel';
 import { QSize } from '../QtCore/QSize';
@@ -115,7 +116,9 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
     itemText(index: number): string {
         return this.native.itemText(index);
     }
-    // TODO: QLineEdit *	lineEdit() const
+    lineEdit(): QLineEdit {
+        return this.native.lineEdit();
+    }
     maxCount(): number {
         return this.native.maxCount();
     }
