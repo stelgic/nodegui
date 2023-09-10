@@ -116,7 +116,7 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
     itemText(index: number): string {
         return this.native.itemText(index);
     }
-    lineEdit(): QLineEdit {
+    lineEdit(): QLineEdit | null {
         return this.native.lineEdit();
     }
     maxCount(): number {
@@ -211,16 +211,6 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
     }
     setEditText(text: string): void {
         this.native.setEditText(text);
-    }
-    setStyleSheet(styleSheet: string, postprocess: boolean = false): void {
-        if (postprocess) {
-            const preparedSheet = StyleSheet.create(styleSheet);
-            this.native.setStyleSheet(preparedSheet);
-            this.native.lineEdit().setStyleSheet(preparedSheet);
-        } else {
-            this.native.setStyleSheet(styleSheet);
-            this.native.lineEdit().setStyleSheet(styleSheet);
-        }
     }
 }
 

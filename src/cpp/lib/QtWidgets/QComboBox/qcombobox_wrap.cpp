@@ -249,6 +249,8 @@ Napi::Value QComboBoxWrap::lineEdit(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   
   QLineEdit* textField = this->instance->lineEdit();
+  if(!textField) return env.Null();
+  
   auto lineEditInstance = QLineEditWrap::constructor.New(
       {Napi::External<QLineEdit>::New(env, textField)});
   return lineEditInstance;
