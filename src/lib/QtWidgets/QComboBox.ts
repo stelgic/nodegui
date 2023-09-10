@@ -119,6 +119,9 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
     lineEdit(): QLineEdit | null {
         return this.native.lineEdit();
     }
+    setLineEdit(field: QLineEdit): void {
+        this.native.setLineEdit(field);
+    }
     maxCount(): number {
         return this.native.maxCount();
     }
