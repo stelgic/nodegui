@@ -75,7 +75,7 @@ class DLL_EXPORT NComboBox : public QComboBox, public NodeWidget {
   }
 
 signals:
-  void showing(QMouseEvent* event);
+  void showing(QShowEvent* event);
 
 protected:
   virtual void showEvent(QShowEvent *event) override 
