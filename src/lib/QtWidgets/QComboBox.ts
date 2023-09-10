@@ -11,6 +11,7 @@ import { QModelIndex } from '../QtCore/QModelIndex';
 import { checkIfNativeElement } from '../utils/helpers';
 import { wrapperCache } from '../core/WrapperCache';
 import { StyleSheet, prepareInlineStyleSheet } from '../core/Style/StyleSheet';
+import { QEvent } from '../QtGui/QEvent/QEvent';
 
 /**
 
@@ -235,6 +236,7 @@ export interface QComboBoxSignals extends QWidgetSignals {
     highlighted: (index: number) => void;
     textActivated: (text: string) => void;
     textHighlighted: (text: string) => void;
+    showEvent: (evt: boolean) => void;
 }
 
 wrapperCache.registerWrapper('QComboBoxWrap', QComboBox);
