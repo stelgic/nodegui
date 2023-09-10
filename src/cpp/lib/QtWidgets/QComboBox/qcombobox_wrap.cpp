@@ -35,6 +35,7 @@ Napi::Object QComboBoxWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("setMaxVisibleItems", &QComboBoxWrap::setMaxVisibleItems),
        InstanceMethod("isEditable", &QComboBoxWrap::isEditable),
        InstanceMethod("setEditable", &QComboBoxWrap::setEditable),
+       InstanceMethod("lineEdit", &QComboBoxWrap::lineEdit),
        InstanceMethod("clear", &QComboBoxWrap::clear),
        InstanceMethod("setModel", &QComboBoxWrap::setModel),
        InstanceMethod("setEditText", &QComboBoxWrap::setEditText),
@@ -242,6 +243,15 @@ Napi::Value QComboBoxWrap::setEditable(const Napi::CallbackInfo& info) {
 
   this->instance->setEditable(editable);
   return env.Null();
+}
+
+Napi::Value QComboBoxWrap::lineEdit(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  
+  QLineEdit* textField = this->instance->lineEdit();
+  auto lineEditInstance = QLineEditWrap::constructor.New(
+      {Napi::External<QLineEdit>::New(env, textField)});
+  return lineEditInstance;
 }
 
 Napi::Value QComboBoxWrap::clear(const Napi::CallbackInfo& info) {

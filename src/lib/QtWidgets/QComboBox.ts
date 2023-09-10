@@ -9,6 +9,7 @@ import { QSize } from '../QtCore/QSize';
 import { QModelIndex } from '../QtCore/QModelIndex';
 import { checkIfNativeElement } from '../utils/helpers';
 import { wrapperCache } from '../core/WrapperCache';
+import { StyleSheet, prepareInlineStyleSheet } from '../core/Style/StyleSheet';
 
 /**
 
@@ -207,6 +208,16 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
     }
     setEditText(text: string): void {
         this.native.setEditText(text);
+    }
+    setStyleSheet(styleSheet: string, postprocess = true): void {
+        if (postprocess) {
+            const preparedSheet = StyleSheet.create(styleSheet);
+            this.native.setStyleSheet(preparedSheet);
+            this.native.lineEdit().setStyleSheet(preparedSheet);
+        } else {
+            this.native.setStyleSheet(styleSheet);
+            this.native.lineEdit().setStyleSheet(styleSheet);
+        }
     }
 }
 

@@ -37,6 +37,7 @@ class DLL_EXPORT QComboBoxWrap : public Napi::ObjectWrap<QComboBoxWrap> {
   Napi::Value setMaxVisibleItems(const Napi::CallbackInfo& info);
   Napi::Value isEditable(const Napi::CallbackInfo& info);
   Napi::Value setEditable(const Napi::CallbackInfo& info);
+  Napi::Value lineEdit(const Napi::CallbackInfo& info);
   Napi::Value clear(const Napi::CallbackInfo& info);
   Napi::Value setModel(const Napi::CallbackInfo& info);
   Napi::Value setEditText(const Napi::CallbackInfo& info);
