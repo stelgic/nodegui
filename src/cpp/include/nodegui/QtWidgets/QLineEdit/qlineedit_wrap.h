@@ -44,4 +44,5 @@ class DLL_EXPORT QLineEditWrap : public Napi::ObjectWrap<QLineEditWrap> {
   Napi::Value redo(const Napi::CallbackInfo& info);
   Napi::Value selectAll(const Napi::CallbackInfo& info);
   Napi::Value undo(const Napi::CallbackInfo& info);
+  Napi::Value acceptType(const Napi::CallbackInfo& info);
 };

@@ -213,6 +213,9 @@ export class QLineEdit extends QWidget<QLineEditSignals> {
     undo(): void {
         this.native.undo();
     }
+    acceptType(valueType: string): void {
+        this.native.acceptType(valueType);
+    }
 }
 wrapperCache.registerWrapper('QLineEditWrap', QLineEdit);
 

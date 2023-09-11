@@ -36,7 +36,7 @@ Napi::Object QLineEditWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("redo", &QLineEditWrap::redo),
        InstanceMethod("selectAll", &QLineEditWrap::selectAll),
        InstanceMethod("undo", &QLineEditWrap::undo),
-
+       InstanceMethod("acceptType", &QLineEditWrap::acceptType),
        QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QLineEditWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
@@ -223,5 +223,19 @@ Napi::Value QLineEditWrap::selectAll(const Napi::CallbackInfo& info) {
 Napi::Value QLineEditWrap::undo(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->undo();
+  return env.Null();
+}
+
+Napi::Value QLineEditWrap::acceptType(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  std::string valueType = info[0].As<Napi::String>().Utf8Value();
+  if(valueType == "integer") {
+    QIntValidator* intValidator = new QIntValidator(this->instance)
+    this->instance->setValidator(intValidator);
+  } else if(valueType == "float" || valueType == "double") {
+    QDoubleValidator* doubleValidator = new QDoubleValidator(this->instance);
+    this->instance->setValidator(doubleValidator);
+  }
+  
   return env.Null();
 }
