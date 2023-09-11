@@ -230,10 +230,10 @@ Napi::Value QLineEditWrap::acceptType(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   std::string valueType = info[0].As<Napi::String>().Utf8Value();
   if(valueType == "integer") {
-    QIntValidator* intValidator = new QIntValidator(this->instance)
+    QIntValidator* intValidator = new QIntValidator(this->instance.get())
     this->instance->setValidator(intValidator);
   } else if(valueType == "float" || valueType == "double") {
-    QDoubleValidator* doubleValidator = new QDoubleValidator(this->instance);
+    QDoubleValidator* doubleValidator = new QDoubleValidator(this->instance.get());
     this->instance->setValidator(doubleValidator);
   }
   
