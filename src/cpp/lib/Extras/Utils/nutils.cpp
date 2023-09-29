@@ -47,6 +47,15 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
   } else if (value.IsSymbol()) {
     return new QVariant();
 
+  } 
+  else if (value.IsArrayBuffer()) {
+    // TODO: fix thisif (array.Get(first).IsArrayBuffer()) {
+    QVariant variant;
+    Napi::ArrayBuffer buf = value.As<Napi::ArrayBuffer>();
+    QByteArray byteArr((const char*)buf.Data(), buf.ByteLength());
+    variant.setValue(byteArr.toBase64());
+    return new QVariant(variant);
+
   } else if (value.IsArray() && !value.IsTypedArray()) {
     // Note: This assumes an array of strings.
     QVariantList values;
@@ -80,13 +89,11 @@ QVariant* extrautils::convertToQVariant(Napi::Env& env, Napi::Value& value) {
     }
     return new QVariant(values);
 
-  } else if (value.IsArrayBuffer()) {
-    // TODO: fix this
-    return new QVariant();
-
-  } else if (value.IsTypedArray()) {
+  }
+  else if (value.IsTypedArray()) {
     QVariantList values;
     Napi::TypedArray array = value.As<Napi::TypedArray>();
+
     if (array.TypedArrayType() == napi_int32_array) {
       for (uint32_t i = 0; i < array.ElementLength(); i++) {
         int32_t value = array.Get(i).ToNumber().Int32Value();
