@@ -18,6 +18,7 @@ class DLL_EXPORT QVariantWrap : public Napi::ObjectWrap<QVariantWrap> {
   QVariant* getInternalInstance();
   // class constructor
   static Napi::FunctionReference constructor;
+  Napi::Value canConvert(const Napi::CallbackInfo& info);
   Napi::Value toString(const Napi::CallbackInfo& info);
   Napi::Value toInt(const Napi::CallbackInfo& info);
   Napi::Value toDouble(const Napi::CallbackInfo& info);

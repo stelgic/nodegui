@@ -10,7 +10,8 @@ Napi::Object QVariantWrap::init(Napi::Env env, Napi::Object exports) {
   char CLASSNAME[] = "QVariant";
   Napi::Function func =
       DefineClass(env, CLASSNAME,
-                  {InstanceMethod("toString", &QVariantWrap::toString),
+                  {InstanceMethod("canConvert", &QVariantWrap::canConvert),
+                   InstanceMethod("toString", &QVariantWrap::toString),
                    InstanceMethod("toInt", &QVariantWrap::toInt),
                    InstanceMethod("toDouble", &QVariantWrap::toDouble),
                    InstanceMethod("toBool", &QVariantWrap::toBool),
@@ -40,6 +41,31 @@ QVariantWrap::QVariantWrap(const Napi::CallbackInfo& info)
   this->rawData = extrautils::configureComponent(this->getInternalInstance());
 }
 
+Napi::Value QVariantWrap::canConvert(const Napi::CallbackInfo& info) {
+  bool success = false;
+  Napi::Env env = info.Env();
+  std::string value = info[0].As<Napi::String>().Utf8Value();
+  if(value == "boolean")
+    success = this->instance->canConvert<bool>();
+  else if(value == "int")
+    success = this->instance->canConvert<int>();
+  else if(value == "uint")
+    success = this->instance->canConvert<uint>();
+  else if(value == "int64")
+    success = this->instance->canConvert<int64_t>();
+  else if(value == "uint64")
+    success = this->instance->canConvert<uint64_t>();
+  else if(value == "float")
+    success = this->instance->canConvert<float>();
+  else if(value == "double")
+    success = this->instance->canConvert<double>();
+  else if(value == "string")
+    success = this->instance->canConvert<QString>();
+  else if(value == "string[]")
+    success = this->instance->canConvert<QStringList>();
+
+  return Napi::Value::From(env, success);
+}
 Napi::Value QVariantWrap::toString(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   QString value = this->instance->value<QString>();

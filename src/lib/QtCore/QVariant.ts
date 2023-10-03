@@ -22,6 +22,9 @@ export class QVariant extends Component {
         }
         super(native);
     }
+    canConvert(type: any) {
+        return this.native.canConvert(type);
+    }
     toString(): string {
         return this.native.toString();
     }
