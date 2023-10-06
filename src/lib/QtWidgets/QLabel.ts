@@ -4,6 +4,7 @@ import { QFrame, QFrameSignals } from './QFrame';
 import { QPixmap } from '../QtGui/QPixmap';
 import { QMovie } from '../QtGui/QMovie';
 import { QMouseEvent } from '../QtGui/QEvent/QMouseEvent';
+import { QMoveEvent } from '../QtGui/QEvent/QMoveEvent';
 import { AlignmentFlag } from '../QtEnums/AlignmentFlag';
 import { TextFormat } from '../QtEnums/TextFormat';
 import { TextInteractionFlag } from '../QtEnums';
@@ -158,5 +159,6 @@ export interface QLabelSignals extends QFrameSignals {
     linkHovered: (link: string) => void;
     pressed: (event: QMouseEvent) => void;
     released: (event: QMouseEvent) => void;
+    move: (event: QMouseEvent) => void;
     doubleClicked: (event: QMouseEvent) => void;
 }

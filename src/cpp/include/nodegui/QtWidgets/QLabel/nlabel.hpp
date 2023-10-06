@@ -42,6 +42,13 @@ class DLL_EXPORT NLabel : public QLabel, public NodeWidget {
         {Napi::External<QMouseEvent>::New(env, event)}); 
       this->emitOnNode.Call({Napi::String::New(env, "released"), instance});
     });
+    QObject::connect(this, &NLabel::move, [=](QMouseEvent* event) {
+      Napi::Env env = this->emitOnNode.Env();
+      Napi::HandleScope scope(env);
+      auto instance = QMouseEventWrap::constructor.New(
+        {Napi::External<QMouseEvent>::New(env, event)}); 
+      this->emitOnNode.Call({Napi::String::New(env, "move"), instance});
+    });
     QObject::connect(this, &NLabel::doubleClicked, [=](QMouseEvent* event) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
@@ -54,6 +61,7 @@ class DLL_EXPORT NLabel : public QLabel, public NodeWidget {
 signals:
   void pressed(QMouseEvent* event);
   void released(QMouseEvent* event);
+  void move(QMouseEvent* event);
   void doubleClicked(QMouseEvent* event);
 
 protected:
@@ -67,6 +75,12 @@ protected:
   {
     emit released(event);
     QLabel::mouseReleaseEvent(event);
+  }
+
+  virtual void mouseMoveEvent(QMouseEvent *event) override 
+  {
+    emit move(event);
+    QLabel::mouseMoveEvent(event);
   }
 
   virtual void mouseDoubleClickEvent(QMouseEvent *event) override 
