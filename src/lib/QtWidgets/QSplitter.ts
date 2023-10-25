@@ -76,6 +76,7 @@ export class QSplitter<Signals extends QSplitterSignals = QSplitterSignals> exte
     setOrientation(orientation: Orientation): void {
         this.native.setOrientation(orientation);
     }
+    
 }
 wrapperCache.registerWrapper('QSplitterWrap', QSplitter);
 

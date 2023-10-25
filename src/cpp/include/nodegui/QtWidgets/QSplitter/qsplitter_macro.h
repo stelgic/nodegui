@@ -70,6 +70,13 @@
     Napi::Env env = info.Env();                                                \
     int orientation = info[0].As<Napi::Number>().Int32Value();                 \
     this->instance->setOrientation(static_cast<Qt::Orientation>(orientation)); \
+    return env.Null();                                                         \                                                       \
+  }                                                                            \
+  Napi::Value setStretchFactor(const Napi::CallbackInfo& info) {               \
+    Napi::Env env = info.Env();                                                \
+    int index = info[0].As<Napi::Number>().Int32Value();                       \
+    int value = info[1].As<Napi::Number>().Int32Value();                       \
+    this->instance->setStretchFactor(index, value);                            \
     return env.Null();                                                         \
   }
 
@@ -89,7 +96,8 @@
       InstanceMethod("isCollapsible", &WidgetWrapName::isCollapsible),   \
       InstanceMethod("orientation", &WidgetWrapName::orientation),       \
       InstanceMethod("setCollapsible", &WidgetWrapName::setCollapsible), \
-      InstanceMethod("setOrientation", &WidgetWrapName::setOrientation),
+      InstanceMethod("setOrientation", &WidgetWrapName::setOrientation), \
+      InstanceMethod("setStretchFactor", &WidgetWrapName::setStretchFactor),
 
 #endif  // QSPLITTER_WRAPPED_METHODS_EXPORT_DEFINE
 
