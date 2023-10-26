@@ -70,7 +70,7 @@
     Napi::Env env = info.Env();                                                \
     int orientation = info[0].As<Napi::Number>().Int32Value();                 \
     this->instance->setOrientation(static_cast<Qt::Orientation>(orientation)); \
-    return env.Null();                                                         \                                                       \
+    return env.Null();                                                         \
   }                                                                            \
   Napi::Value setStretchFactor(const Napi::CallbackInfo& info) {               \
     Napi::Env env = info.Env();                                                \

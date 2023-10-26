@@ -1,6 +1,7 @@
 import addon from '../utils/addon';
 import { QWidget, QWidgetSignals } from './QWidget';
 import { QFrame, QFrameSignals } from './QFrame';
+import { QMouseEvent } from '../QtGui/QEvent/QMouseEvent';
 import { NativeElement } from '../core/Component';
 import { Orientation } from '../QtEnums';
 import { wrapperCache } from '../core/WrapperCache';
@@ -83,5 +84,8 @@ export class QSplitter<Signals extends QSplitterSignals = QSplitterSignals> exte
 wrapperCache.registerWrapper('QSplitterWrap', QSplitter);
 
 export interface QSplitterSignals extends QFrameSignals {
+    pressed: (event: QMouseEvent) => void;
+    released: (event: QMouseEvent) => void;
+    move: (event: QMouseEvent) => void;
     splitterMoved: (pos: number, index: number) => void;
 }
