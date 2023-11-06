@@ -8,6 +8,7 @@ import { checkIfNativeElement } from '../utils/helpers';
 
 import { QWebEngineSettings } from "./QWebEngineSettings";
 import { QWebEnginePage } from "./QWebEnginePage";
+import { QAction } from '../QtWidgets/QAction';
 
 
 export class QWebEngineView extends QWidget<QWebEngineViewSignals> {
@@ -43,6 +44,10 @@ export class QWebEngineView extends QWidget<QWebEngineViewSignals> {
 
   setZoomFactor(factor: number) {
     this.native.setZoomFactor(factor);
+  }
+
+  pageAction(action: number): QAction {
+    return this.native.pageAction(action);
   }
 }
 
