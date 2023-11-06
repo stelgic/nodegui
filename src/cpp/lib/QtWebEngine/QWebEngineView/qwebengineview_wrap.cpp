@@ -19,6 +19,7 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
       DefineClass(env, CLASSNAME,
                   {InstanceMethod("settings", &QWebEngineViewWrap::settings),
                    InstanceMethod("page", &QWebEngineViewWrap::page),
+                   InstanceMethod("pageAction", &QWebEngineViewWrap::pageAction),
                    InstanceMethod("setHtml", &QWebEngineViewWrap::setHtml),
                    InstanceMethod("setZoomFactor", &QWebEngineViewWrap::setZoomFactor),
                    QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
