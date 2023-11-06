@@ -23,7 +23,7 @@ class DLL_EXPORT QWebEngineViewWrap : public Napi::ObjectWrap<QWebEngineViewWrap
   // wrapped methods
   Napi::Value settings(const Napi::CallbackInfo& info);
   Napi::Value page(const Napi::CallbackInfo& info);
-  Napi::Value pageAction(const Napi::CallbackInfo& info);
+  Napi::Value reload(const Napi::CallbackInfo& info);
   Napi::Value setHtml(const Napi::CallbackInfo& info);
   Napi::Value setZoomFactor(const Napi::CallbackInfo& info);
 };

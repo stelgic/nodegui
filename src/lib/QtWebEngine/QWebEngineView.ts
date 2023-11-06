@@ -46,8 +46,8 @@ export class QWebEngineView extends QWidget<QWebEngineViewSignals> {
     this.native.setZoomFactor(factor);
   }
 
-  pageAction(action: number): QAction {
-    return this.native.pageAction(action);
+  reload(): void {
+    return this.native.reload();
   }
 }
 

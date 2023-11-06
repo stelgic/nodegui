@@ -19,7 +19,7 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
       DefineClass(env, CLASSNAME,
                   {InstanceMethod("settings", &QWebEngineViewWrap::settings),
                    InstanceMethod("page", &QWebEngineViewWrap::page),
-                   InstanceMethod("pageAction", &QWebEngineViewWrap::pageAction),
+                   InstanceMethod("reload", &QWebEngineViewWrap::reload),
                    InstanceMethod("setHtml", &QWebEngineViewWrap::setHtml),
                    InstanceMethod("setZoomFactor", &QWebEngineViewWrap::setZoomFactor),
                    QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
@@ -74,13 +74,11 @@ Napi::Value QWebEngineViewWrap::page(const Napi::CallbackInfo& info) {
       {Napi::External<QWebEnginePage>::New(env, page)});
 }
 
-Napi::Value QWebEngineViewWrap::pageAction(const Napi::CallbackInfo& info) {
+Napi::Value QWebEngineViewWrap::reload(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
-  int value = info[0].ToNumber().Int32Value();
-  QAction* action = this->instance->pageAction(
-    static_cast<QWebEnginePage::WebAction>(value));
-  return Napi::External<QAction>::New(env, action);
+  this->instance->reload();
+  return env.Null();
 }
 
 Napi::Value QWebEngineViewWrap::setHtml(const Napi::CallbackInfo& info)
