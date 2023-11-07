@@ -22,6 +22,7 @@ import { wrapperCache } from '../core/WrapperCache';
 import { QSizePolicyPolicy } from './QSizePolicy';
 import { QStyle } from '../QtGui/QStyle';
 import { QWindow } from '../QtGui/QWindow';
+import { QKeyEvent } from '../QtGui/QEvent/QKeyEvent';
 
 /**
  > Create and control views.
@@ -728,5 +729,6 @@ export interface QWidgetSignals extends QObjectSignals {
     windowTitleChanged: (title: string) => void;
     windowIconChanged: (iconNative: NativeElement) => void;
     customContextMenuRequested: (pos: { x: number; y: number }) => void;
+    keyReleaseEvent: (event: QKeyEvent) => void;
 }
 wrapperCache.registerWrapper('QWidgetWrap', QWidget);
