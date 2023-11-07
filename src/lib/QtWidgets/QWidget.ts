@@ -729,6 +729,6 @@ export interface QWidgetSignals extends QObjectSignals {
     windowTitleChanged: (title: string) => void;
     windowIconChanged: (iconNative: NativeElement) => void;
     customContextMenuRequested: (pos: { x: number; y: number }) => void;
-    keyReleaseEvent: (event: QKeyEvent) => void;
+    keyRelease: (event: QKeyEvent) => void;
 }
 wrapperCache.registerWrapper('QWidgetWrap', QWidget);

@@ -31,7 +31,7 @@ class DLL_EXPORT NWidget : public QWidget, public NodeWidget {
       auto eventWrap = QKeyEventWrap::constructor.New(                           
         {Napi::External<QKeyEvent>::New(env, event)});                          
       this->emitOnNode.Call(                                                    
-        {Napi::String::New(env, "keyReleaseEvent"), eventWrap});                 
+        {Napi::String::New(env, "keyRelease"), eventWrap});                 
     });                                                                         
   }
 
