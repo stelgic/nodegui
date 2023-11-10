@@ -1,4 +1,5 @@
 import addon from '../utils/addon';
+import { QKeyEvent } from '../QtGui/QEvent/QKeyEvent';
 import { QWidget, QWidgetSignals } from './QWidget';
 import { QLayout } from './QLayout';
 import { QMenuBar } from './QMenuBar';
@@ -112,4 +113,7 @@ export class QMainWindow extends QWidget<QMainWindowSignals> {
 }
 wrapperCache.registerWrapper('QMainWindowWrap', QMainWindow);
 
-export type QMainWindowSignals = QWidgetSignals;
+export interface QWindowSignals extends QWidgetSignals {
+    keyReleased: (event: QKeyEvent) => void;
+}
+export type QMainWindowSignals = QWindowSignals;
