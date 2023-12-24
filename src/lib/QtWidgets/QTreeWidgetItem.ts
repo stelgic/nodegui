@@ -111,6 +111,15 @@ export class QTreeWidgetItem extends Component {
     }
 
     /**
+     * Adds the specified child to this QTreeWidgetItem.
+     * @param childItem The child to add.
+     */
+    insertChild(index: number, childItem: QTreeWidgetItem): void {
+        this.items.add(childItem);
+        this.native.insertChild(index, childItem.native);
+    }
+
+    /**
      * Sets the flags for the item to the given flags. These determine whether the item can be selected or modified.
      * This is often used to disable an item.
      * @param flags The flags.

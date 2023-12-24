@@ -24,6 +24,7 @@ Napi::Object QTreeWidgetItemWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("setSelected", &QTreeWidgetItemWrap::setSelected),
        InstanceMethod("setExpanded", &QTreeWidgetItemWrap::setExpanded),
        InstanceMethod("addChild", &QTreeWidgetItemWrap::addChild),
+       InstanceMethod("insertChild", &QTreeWidgetItemWrap::insertChild),
        InstanceMethod("setFlags", &QTreeWidgetItemWrap::setFlags),
        InstanceMethod("setCheckState", &QTreeWidgetItemWrap::setCheckState),
        InstanceMethod("flags", &QTreeWidgetItemWrap::flags),
@@ -225,6 +226,19 @@ Napi::Value QTreeWidgetItemWrap::addChild(const Napi::CallbackInfo &info) {
 
   QTreeWidgetItem *item = itemWidgetWrap->getInternalInstance();
   this->instance->addChild(item);
+
+  return env.Null();
+}
+
+Napi::Value QTreeWidgetItemWrap::insertChild(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  int index = info[0].As<Napi::Number>().Int32Value();
+  Napi::Object itemObject = info[0].As<Napi::Object>();
+  QTreeWidgetItemWrap *itemWidgetWrap =
+      Napi::ObjectWrap<QTreeWidgetItemWrap>::Unwrap(itemObject);
+
+  QTreeWidgetItem *item = itemWidgetWrap->getInternalInstance();
+  this->instance->insertChild(index, item);
 
   return env.Null();
 }

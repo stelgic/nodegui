@@ -38,6 +38,7 @@ class DLL_EXPORT QTreeWidgetItemWrap
   Napi::Value setSelected(const Napi::CallbackInfo &info);
   Napi::Value setExpanded(const Napi::CallbackInfo &info);
   Napi::Value addChild(const Napi::CallbackInfo &info);
+  Napi::Value insertChild(const Napi::CallbackInfo &info);
   Napi::Value setFlags(const Napi::CallbackInfo &info);
   Napi::Value setCheckState(const Napi::CallbackInfo &info);
   Napi::Value flags(const Napi::CallbackInfo &info);
