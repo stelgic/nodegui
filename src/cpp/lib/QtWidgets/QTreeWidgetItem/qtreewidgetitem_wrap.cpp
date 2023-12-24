@@ -233,7 +233,7 @@ Napi::Value QTreeWidgetItemWrap::addChild(const Napi::CallbackInfo &info) {
 Napi::Value QTreeWidgetItemWrap::insertChild(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
   int index = info[0].As<Napi::Number>().Int32Value();
-  Napi::Object itemObject = info[0].As<Napi::Object>();
+  Napi::Object itemObject = info[1].As<Napi::Object>();
   QTreeWidgetItemWrap *itemWidgetWrap =
       Napi::ObjectWrap<QTreeWidgetItemWrap>::Unwrap(itemObject);
 
