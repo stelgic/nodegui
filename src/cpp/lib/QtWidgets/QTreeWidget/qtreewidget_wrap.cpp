@@ -130,8 +130,11 @@ Napi::Value QTreeWidgetWrap::insertTopLevelItems(
 
 Napi::Value QTreeWidgetWrap::setSelectionModel(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  QItemSelectionModel mode = info[0].As<Napi::Number>().Int32Value();
-  this->instance->setSelectionModel(mode);
+
+  Napi::Object selModeObject = info[0].As<Napi::Object>();
+  QItemSelectionModel* selModeWrap =
+      Napi::ObjectWrap<QItemSelectionModelWrap>::Unwrap(selModeWrap);
+  QItemSelectionModel* selMode = selModeWrap->getInternalInstance();
 
   return env.Null();
 }
