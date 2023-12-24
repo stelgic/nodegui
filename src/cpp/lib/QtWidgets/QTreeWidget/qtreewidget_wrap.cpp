@@ -4,6 +4,7 @@
 
 #include "Extras/Utils/nutils.h"
 #include "QtWidgets/QTreeWidgetItem/qtreewidgetitem_wrap.h"
+#include "QtCore/QItemSelectionModel/qitemselectionmodel_wrap.h"
 #include "QtWidgets/QWidget/qwidget_wrap.h"
 
 Napi::FunctionReference QTreeWidgetWrap::constructor;
@@ -130,10 +131,9 @@ Napi::Value QTreeWidgetWrap::insertTopLevelItems(
 
 Napi::Value QTreeWidgetWrap::setSelectionModel(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-
   Napi::Object selModeObject = info[0].As<Napi::Object>();
-  QItemSelectionModel* selModeWrap =
-      Napi::ObjectWrap<QItemSelectionModelWrap>::Unwrap(selModeWrap);
+  QItemSelectionModelWrap* selModeWrap =
+      Napi::ObjectWrap<QItemSelectionModelWrap>::Unwrap(selModeObject);
   QItemSelectionModel* selMode = selModeWrap->getInternalInstance();
 
   return env.Null();
