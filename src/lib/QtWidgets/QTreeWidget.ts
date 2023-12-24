@@ -3,7 +3,7 @@ import { QWidget, QWidgetSignals } from './QWidget';
 import { NativeElement } from '../core/Component';
 import { QAbstractScrollArea, QAbstractScrollAreaSignals } from './QAbstractScrollArea';
 import { QTreeWidgetItem } from './QTreeWidgetItem';
-import { checkIfNativeElement, MatchFlag } from '../..';
+import { checkIfNativeElement, QItemSelectionModel, MatchFlag } from '../..';
 import { wrapperCache } from '../core/WrapperCache';
 
 /**
@@ -98,6 +98,10 @@ export class QTreeWidget extends QAbstractScrollArea<QTreeWidgetSignals> {
 
     setHeaderHidden(hide: boolean): void {
         this.native.setProperty('headerHidden', hide);
+    }
+
+    setSelectionModel(mode: QItemSelectionModel): void {
+        this.native.setSelectionModel(mode);
     }
 
     selectedItems(): QTreeWidgetItem[] {
