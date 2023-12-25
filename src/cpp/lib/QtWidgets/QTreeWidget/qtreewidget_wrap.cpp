@@ -20,6 +20,7 @@ Napi::Object QTreeWidgetWrap::init(Napi::Env env, Napi::Object exports) {
                       &QTreeWidgetWrap::insertTopLevelItem),
        InstanceMethod("insertTopLevelItems",
                       &QTreeWidgetWrap::insertTopLevelItems),
+       InstanceMethod("setSelectionMode", &QTreeWidgetWrap::setSelectionMode),
        InstanceMethod("setSelectionModel", &QTreeWidgetWrap::setSelectionModel),
        InstanceMethod("getSelectionModel", &QTreeWidgetWrap::getSelectionModel),
        InstanceMethod("selectedItems", &QTreeWidgetWrap::selectedItems),
@@ -126,6 +127,16 @@ Napi::Value QTreeWidgetWrap::insertTopLevelItems(
     items.append(item);
   }
   this->instance->insertTopLevelItems(index, items);
+
+  return env.Null();
+}
+
+Napi::Value QTreeWidgetWrap::setSelectionMode(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  QAbstractItemView::SelectionMode flags = 
+    static_cast<QAbstractItemView::SelectionMode>(
+      info[0].As<Napi::Number>().Int32Value());
+  this->instance->setSelectionMode(flags);
 
   return env.Null();
 }
