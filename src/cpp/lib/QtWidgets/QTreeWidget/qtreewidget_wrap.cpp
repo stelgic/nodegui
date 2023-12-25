@@ -21,6 +21,7 @@ Napi::Object QTreeWidgetWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("insertTopLevelItems",
                       &QTreeWidgetWrap::insertTopLevelItems),
        InstanceMethod("setSelectionModel", &QTreeWidgetWrap::setSelectionModel),
+       InstanceMethod("getSelectionModel", &QTreeWidgetWrap::getSelectionModel),
        InstanceMethod("selectedItems", &QTreeWidgetWrap::selectedItems),
        InstanceMethod("setColumnCount", &QTreeWidgetWrap::setColumnCount),
        InstanceMethod("setColumnWidth", &QTreeWidgetWrap::setColumnWidth),
@@ -131,10 +132,20 @@ Napi::Value QTreeWidgetWrap::insertTopLevelItems(
 
 Napi::Value QTreeWidgetWrap::setSelectionModel(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  Napi::Object selModeObject = info[0].As<Napi::Object>();
-  QItemSelectionModelWrap* selModeWrap =
-      Napi::ObjectWrap<QItemSelectionModelWrap>::Unwrap(selModeObject);
-  QItemSelectionModel* selMode = selModeWrap->getInternalInstance();
+  Napi::Object selModelObject = info[0].As<Napi::Object>();
+  QItemSelectionModelWrap* selModelWrap =
+      Napi::ObjectWrap<QItemSelectionModelWrap>::Unwrap(selModelObject);
+  QItemSelectionModel* selModel = selModelWrap->getInternalInstance();
+  this->instance->setSelectionModel(selModel);
+
+  return env.Null();
+}
+
+Napi::Value QTreeWidgetWrap::getSelectionModel(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+  QItemSelectionModel* selMode = this->instance->selectionModel();
+  if(selMode)
+    return WrapperCache::instance.getWrapper(env, selMode);
 
   return env.Null();
 }
