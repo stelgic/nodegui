@@ -100,7 +100,7 @@ export class QTreeWidget extends QAbstractScrollArea<QTreeWidgetSignals> {
         this.native.setProperty('headerHidden', hide);
     }
 
-    setSelectionMode(flags: SelectionFlag): void {
+    setSelectionMode(flags: number): void {
         this.native.setSelectionMode(flags);
     }
 
