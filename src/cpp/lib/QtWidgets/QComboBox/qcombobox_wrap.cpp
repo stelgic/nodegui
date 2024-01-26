@@ -60,7 +60,7 @@ Napi::Object QComboBoxWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("setFrame", &QComboBoxWrap::setFrame),
        InstanceMethod("setItemText", &QComboBoxWrap::setItemText),
        InstanceMethod("setMaxCount", &QComboBoxWrap::setMaxCount),
-       InstanceMethod("setPlaceholderText", &QComboBoxWrap::setPlaceholderText),
+       //InstanceMethod("setPlaceholderText", &QComboBoxWrap::setPlaceholderText),
        InstanceMethod("showPopup", &QComboBoxWrap::showPopup),
        InstanceMethod("insertPolicy", &QComboBoxWrap::insertPolicy),
        InstanceMethod("setInsertPolicy", &QComboBoxWrap::setInsertPolicy),
@@ -396,13 +396,13 @@ Napi::Value QComboBoxWrap::setMaxCount(const Napi::CallbackInfo& info) {
   this->instance->setMaxCount(max);
   return env.Null();
 }
-Napi::Value QComboBoxWrap::setPlaceholderText(const Napi::CallbackInfo& info) {
+/*Napi::Value QComboBoxWrap::setPlaceholderText(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   std::string value = info[0].As<Napi::String>().Utf8Value();
   QString plcHolder = QString::fromUtf8(value.c_str());
   this->instance->setPlaceholderText(plcHolder);
   return env.Null();
-}
+}*/
 Napi::Value QComboBoxWrap::showPopup(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->showPopup();
