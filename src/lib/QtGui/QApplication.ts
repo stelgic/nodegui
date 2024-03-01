@@ -169,7 +169,7 @@ export class QApplication extends QObject<QApplicationSignals> {
     }
 
     static setEnvironmentVariable(name: string, value: string): void {
-        addon.setEnvironmentVariable(name, value);
+        addon.QApplication.setEnvironmentVariable(name, value);
     }
 }
 wrapperCache.registerWrapper('QApplicationWrap', QApplication);
