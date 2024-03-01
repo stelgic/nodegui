@@ -50,6 +50,8 @@ Napi::Object QApplicationWrap::init(Napi::Env env, Napi::Object exports) {
                     &StaticQApplicationWrapMethods::setDesktopFileName),
        StaticMethod("setDesktopSettingsAware",
                     &StaticQApplicationWrapMethods::setDesktopSettingsAware),
+       StaticMethod("setEnvironmentVariable",
+                    &StaticQApplicationWrapMethods::setEnvironmentVariable),
 
        QOBJECT_WRAPPED_METHODS_EXPORT_DEFINE(QApplicationWrap)});
   constructor = Napi::Persistent(func);
@@ -280,3 +282,14 @@ Napi::Value StaticQApplicationWrapMethods::setDesktopSettingsAware(
   QApplication::setDesktopSettingsAware(on);
   return env.Null();
 }
+
+Napi::Value StaticQApplicationWrapMethods::setEnvironmentVariable(const Napi::CallbackInfo& info)
+{
+  Napi::Env env = info.Env();
+  std::string name = info[0].As<Napi::String>().Utf8Value();
+  std::string value = info[1].As<Napi::String>().Utf8Value();
+
+  qputenv(name.c_str(), QByteArray::fromStdString(value));
+  return env.Null();
+}
+

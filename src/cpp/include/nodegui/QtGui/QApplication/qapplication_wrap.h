@@ -50,4 +50,5 @@ DLL_EXPORT Napi::Value setApplicationDisplayName(
     const Napi::CallbackInfo& info);
 DLL_EXPORT Napi::Value setDesktopFileName(const Napi::CallbackInfo& info);
 DLL_EXPORT Napi::Value setDesktopSettingsAware(const Napi::CallbackInfo& info);
+DLL_EXPORT Napi::Value setEnvironmentVariable(const Napi::CallbackInfo& info);
 }  // namespace StaticQApplicationWrapMethods

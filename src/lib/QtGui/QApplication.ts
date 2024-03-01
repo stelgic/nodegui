@@ -167,6 +167,10 @@ export class QApplication extends QObject<QApplicationSignals> {
     static style(): QStyle {
         return new QStyle(addon.QApplication.style());
     }
+
+    static setEnvironmentVariable(name: string, value: string): void {
+        addon.setEnvironmentVariable(name, value);
+    }
 }
 wrapperCache.registerWrapper('QApplicationWrap', QApplication);
 
