@@ -3,6 +3,7 @@
 #include <napi.h>
 
 #include <QPointer>
+#include <QtWebEngineQuick/qtwebenginequickglobal.h>
 
 #include "Extras/Export/export.h"
 #include "nodegui/QtWidgets/QWidget/qwidget_macro.h"
@@ -27,3 +28,7 @@ class DLL_EXPORT QWebEngineViewWrap : public Napi::ObjectWrap<QWebEngineViewWrap
   Napi::Value setHtml(const Napi::CallbackInfo& info);
   Napi::Value setZoomFactor(const Napi::CallbackInfo& info);
 };
+
+namespace StaticQWebEngineQuickWrapMethods {
+DLL_EXPORT Napi::Value initialize(const Napi::CallbackInfo& info);
+}

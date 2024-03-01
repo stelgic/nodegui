@@ -49,6 +49,10 @@ export class QWebEngineView extends QWidget<QWebEngineViewSignals> {
   reload(): void {
     return this.native.reload();
   }
+
+  static initialize(): void {
+    addon.QWebEngineView.initialize();
+  }
 }
 
 wrapperCache.registerWrapper('QWebEngineViewWrap', QWebEngineView);

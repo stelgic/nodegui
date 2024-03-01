@@ -22,6 +22,7 @@ Napi::Object QWebEngineViewWrap::init(Napi::Env env, Napi::Object exports) {
                    InstanceMethod("reload", &QWebEngineViewWrap::reload),
                    InstanceMethod("setHtml", &QWebEngineViewWrap::setHtml),
                    InstanceMethod("setZoomFactor", &QWebEngineViewWrap::setZoomFactor),
+                   StaticMethod("initialize", &StaticQWebEngineQuickWrapMethods::initialize),
                    QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QWebEngineViewWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
@@ -103,5 +104,12 @@ Napi::Value QWebEngineViewWrap::setZoomFactor(const Napi::CallbackInfo& info)
   Napi::HandleScope scope(env);
   qreal factor = info[0].ToNumber().DoubleValue();
   this->instance->setZoomFactor(factor);
+  return env.Null();
+}
+
+Napi::Value StaticQWebEngineQuickWrapMethods::initialize(const Napi::CallbackInfo& info)
+{
+  Napi::Env env = info.Env();
+  QtWebEngineQuick::initialize();
   return env.Null();
 }
