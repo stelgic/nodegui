@@ -6,6 +6,7 @@ import { QPoint } from '../QtCore/QPoint';
 import { wrapperCache } from '../core/WrapperCache';
 import { NativeElement } from '../core/Component';
 import { checkIfNativeElement } from '../utils/helpers';
+import { QAction } from './QAction';
 
 /**
 
@@ -216,6 +217,9 @@ export class QLineEdit extends QWidget<QLineEditSignals> {
     acceptType(valueType: string): void {
         this.native.acceptType(valueType);
     }
+    addQAction(action: string | QAction, position: ActionPosition): QAction {
+        return this.native.addAction(action, position);
+    }
 }
 wrapperCache.registerWrapper('QLineEditWrap', QLineEdit);
 
@@ -225,6 +229,12 @@ export enum EchoMode {
     Password,
     PasswordEchoOnEdit,
 }
+
+export enum ActionPosition {
+    LeadingPosition,
+    TrailingPosition,
+}
+
 export interface QLineEditSignals extends QWidgetSignals {
     cursorPositionChanged: (oldPos: number, newPos: number) => void;
     editingFinished: () => void;

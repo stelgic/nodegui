@@ -37,6 +37,7 @@ Napi::Object QLineEditWrap::init(Napi::Env env, Napi::Object exports) {
        InstanceMethod("selectAll", &QLineEditWrap::selectAll),
        InstanceMethod("undo", &QLineEditWrap::undo),
        InstanceMethod("acceptType", &QLineEditWrap::acceptType),
+       InstanceMethod("addQAction", &QLineEditWrap::addQAction),
        QWIDGET_WRAPPED_METHODS_EXPORT_DEFINE(QLineEditWrap)});
   constructor = Napi::Persistent(func);
   exports.Set(CLASSNAME, func);
@@ -237,5 +238,21 @@ Napi::Value QLineEditWrap::acceptType(const Napi::CallbackInfo& info) {
     this->instance->setValidator(doubleValidator);
   }
   
+  return env.Null();
+}
+
+Napi::Value QLineEditWrap::addQAction(const Napi::CallbackInfo& info)
+{
+  Napi::Env env = info.Env();
+  QLineEdit::ActionPosition position = 
+    static_cast<QLineEdit::ActionPosition>(info[1].As<Napi::Number>().Int32Value());
+
+  if(info[0].IsObject())
+  {
+    QActionWrap* actionWrap = Napi::ObjectWrap<QActionWrap>::Unwrap(info[0].As<Napi::Object>());
+    QAction* action = actionWrap->getInternalInstance();
+    this->instance->addAction(action, position);
+  }
+
   return env.Null();
 }
