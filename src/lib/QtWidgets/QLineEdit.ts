@@ -217,8 +217,8 @@ export class QLineEdit extends QWidget<QLineEditSignals> {
     acceptType(valueType: string): void {
         this.native.acceptType(valueType);
     }
-    addQAction(action: string | QAction, position: ActionPosition): QAction {
-        return this.native.addAction(action, position);
+    addQAction(action: QAction, position: ActionPosition): void {
+        this.native.addQAction(action.native, position);
     }
 }
 wrapperCache.registerWrapper('QLineEditWrap', QLineEdit);
