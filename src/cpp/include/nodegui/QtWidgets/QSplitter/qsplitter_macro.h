@@ -72,6 +72,20 @@
     this->instance->setOrientation(static_cast<Qt::Orientation>(orientation)); \
     return env.Null();                                                         \
   }                                                                            \
+  Napi::Value setSizes(const Napi::CallbackInfo& info) {                       \
+    Napi::Env env = info.Env();                                                \
+    Napi::Object sizesObject = info[0].As<Napi::Object>();                     \
+    QVariantWrap* sizesWrap =                                                  \
+        Napi::ObjectWrap<QVariantWrap>::Unwrap(sizesObject);                   \
+    QVariant* variant = sizesWrap->getInternalInstance();                      \
+    QList<QVariant> values = variant->toList();                                       \
+    QList<int> sizes;                                                          \
+    for(const QVariant &v: values) {                                    \
+      sizes.push_back(v.toInt());                                              \
+    }                                                                          \
+    this->instance->setSizes(sizes);                                           \
+    return env.Null();                                                         \
+  }                                                                            \
   Napi::Value setStretchFactor(const Napi::CallbackInfo& info) {               \
     Napi::Env env = info.Env();                                                \
     int index = info[0].As<Napi::Number>().Int32Value();                       \
@@ -95,6 +109,7 @@
       InstanceMethod("insertWidget", &WidgetWrapName::insertWidget),     \
       InstanceMethod("isCollapsible", &WidgetWrapName::isCollapsible),   \
       InstanceMethod("orientation", &WidgetWrapName::orientation),       \
+      InstanceMethod("setSizes", &WidgetWrapName::setSizes),             \
       InstanceMethod("setCollapsible", &WidgetWrapName::setCollapsible), \
       InstanceMethod("setOrientation", &WidgetWrapName::setOrientation), \
       InstanceMethod("setStretchFactor", &WidgetWrapName::setStretchFactor),

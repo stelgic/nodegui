@@ -6,6 +6,7 @@ import { NativeElement } from '../core/Component';
 import { Orientation } from '../QtEnums';
 import { wrapperCache } from '../core/WrapperCache';
 import { checkIfNativeElement } from '../utils/helpers';
+import { QVariant } from '../QtCore/QVariant';
 
 /**
 
@@ -70,6 +71,9 @@ export class QSplitter<Signals extends QSplitterSignals = QSplitterSignals> exte
     }
     orientation(): Orientation {
         return this.native.orientation();
+    }
+    setSizes(values: QVariant): void {
+        this.native.setSizes(values.native);
     }
     setCollapsible(index: number, collapse: boolean): void {
         this.native.setCollapsible(index, collapse);
