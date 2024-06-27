@@ -178,6 +178,22 @@
     this->instance->sortByColumn(column, order);                              \
     return env.Null();                                                        \
   }                                                                           \
+  Napi::Value setHorizontalHeader(const Napi::CallbackInfo& info) {           \
+    Napi::Env env = info.Env();                                               \
+    Napi::Object headerObject = info[0].As<Napi::Object>();                   \
+    QHeaderViewWrap* headerWrap =                                             \
+          Napi::ObjectWrap<QHeaderViewWrap>::Unwrap(headerObject);            \
+    this->instance->setHorizontalHeader(headerWrap->getInternalInstance());   \
+    return env.Null();                                                        \
+  }                                                                           \
+  Napi::Value setVerticalHeader(const Napi::CallbackInfo& info) {             \
+    Napi::Env env = info.Env();                                               \
+    Napi::Object headerObject = info[0].As<Napi::Object>();                   \
+    QHeaderViewWrap* headerWrap =                                             \
+          Napi::ObjectWrap<QHeaderViewWrap>::Unwrap(headerObject);            \
+    this->instance->setVerticalHeader(headerWrap->getInternalInstance());     \
+    return env.Null();                                                        \
+  }                                                                           \
   Napi::Value horizontalHeader(const Napi::CallbackInfo& info) {              \
     Napi::Env env = info.Env();                                               \
     auto header = this->instance->horizontalHeader();                         \
@@ -232,7 +248,9 @@
       InstanceMethod("showRow", &WidgetWrapName::showRow),                   \
       InstanceMethod("sortByColumn", &WidgetWrapName::sortByColumn),         \
       InstanceMethod("horizontalHeader", &WidgetWrapName::horizontalHeader), \
-      InstanceMethod("verticalHeader", &WidgetWrapName::verticalHeader)
+      InstanceMethod("verticalHeader", &WidgetWrapName::verticalHeader),     \
+      InstanceMethod("setHorizontalHeader", &WidgetWrapName::setHorizontalHeader), \
+      InstanceMethod("setVerticalHeader", &WidgetWrapName::setVerticalHeader)
 
 #endif  // QTABLEVIEW_WRAPPED_METHODS_EXPORT_DEFINE
 

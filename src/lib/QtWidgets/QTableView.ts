@@ -64,6 +64,10 @@ export class QTableView<Signals extends QTableViewSignals = QTableViewSignals> e
         return new QHeaderView(this.native.horizontalHeader());
     }
 
+    setHorizontalHeader(header: QHeaderView): void {
+        return this.native.setHorizontalHeader(header.native);
+    }
+
     isColumnHidden(column: number): boolean {
         return this.native.isColumnHidden(column);
     }
@@ -142,6 +146,10 @@ export class QTableView<Signals extends QTableViewSignals = QTableViewSignals> e
 
     verticalHeader(): QHeaderView {
         return new QHeaderView(this.native.verticalHeader());
+    }
+
+    setVerticalHeader(header: QHeaderView): void {
+        return this.native.setVerticalHeader(header.native);
     }
 
     wordWrap(): boolean {
