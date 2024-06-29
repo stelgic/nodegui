@@ -4,8 +4,10 @@ import addon from '../utils/addon';
 import { checkIfNativeElement } from '../utils/helpers';
 import { QObject } from './QObject';
 import { QRect } from './QRect';
+import { QColor } from '../QtGui/QColor';
+import { QFont } from '../QtGui/QFont';
 
-export type QVariantType = NativeElement | string | string[] | number| number[] | Int32Array | BigInt64Array | Float32Array | Float64Array | boolean | QRect | QObject | QVariant;
+export type QVariantType = NativeElement | string | string[] | number| number[] | Int32Array | BigInt64Array | Float32Array | Float64Array | boolean | QRect | QObject | QColor | QFont | QVariant;
 
 export class QVariant extends Component {
     constructor();
@@ -54,6 +56,10 @@ export class QVariant extends Component {
  */
 export function nativeObjectFromVariantType(obj: QVariantType): any {
     if (obj instanceof QRect) {
+        return obj.native;
+    } else if (obj instanceof QColor) {
+        return obj.native;
+    } else if (obj instanceof QFont) {
         return obj.native;
     }
     return obj;

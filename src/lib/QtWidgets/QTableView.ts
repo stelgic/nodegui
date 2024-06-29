@@ -6,6 +6,7 @@ import { QHeaderView } from './QHeaderView';
 import { wrapperCache } from '../core/WrapperCache';
 import { NativeElement } from '../core/Component';
 import { checkIfNativeElement } from '../utils/helpers';
+import { QAbstractItemModel } from '../QtCore/QAbstractItemModel';
 
 /**
 
@@ -58,6 +59,10 @@ export class QTableView<Signals extends QTableViewSignals = QTableViewSignals> e
 
     gridStyle(): PenStyle {
         return this.property('gridStyle').toInt();
+    }
+
+    setModel(model: QAbstractItemModel): void {
+        this.native.setModel(model.native);
     }
 
     horizontalHeader(): QHeaderView {

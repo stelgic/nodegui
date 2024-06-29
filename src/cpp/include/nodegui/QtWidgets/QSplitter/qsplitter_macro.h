@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QList>
 #include "QtWidgets/QFrame/qframe_macro.h"
 #include "QtWidgets/QFrame/qframe_wrap.h"
 
@@ -71,6 +72,15 @@
     int orientation = info[0].As<Napi::Number>().Int32Value();                 \
     this->instance->setOrientation(static_cast<Qt::Orientation>(orientation)); \
     return env.Null();                                                         \
+  }                                                                            \
+  Napi::Value sizes(const Napi::CallbackInfo& info) {                          \
+    Napi::Env env = info.Env();                                                \
+    QList<int> sizes = this->instance->sizes();                                \
+    Napi::Array array = Napi::Array::New(env, static_cast<int>(sizes.size())); \
+    for(int i=0; i < static_cast<int>(sizes.size()); ++i) {                    \
+      array[i] = Napi::Value::From(env,sizes[i]);                               \
+    }                                                                          \
+    return array;                                                              \
   }                                                                            \
   Napi::Value setSizes(const Napi::CallbackInfo& info) {                       \
     Napi::Env env = info.Env();                                                \

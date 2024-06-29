@@ -72,6 +72,9 @@ export class QSplitter<Signals extends QSplitterSignals = QSplitterSignals> exte
     orientation(): Orientation {
         return this.native.orientation();
     }
+    sizes(): Array<number> {
+        return this.native.sizes();
+    }
     setSizes(values: QVariant): void {
         this.native.setSizes(values.native);
     }
