@@ -119,6 +119,7 @@
       InstanceMethod("insertWidget", &WidgetWrapName::insertWidget),     \
       InstanceMethod("isCollapsible", &WidgetWrapName::isCollapsible),   \
       InstanceMethod("orientation", &WidgetWrapName::orientation),       \
+      InstanceMethod("sizes", &WidgetWrapName::sizes),             \
       InstanceMethod("setSizes", &WidgetWrapName::setSizes),             \
       InstanceMethod("setCollapsible", &WidgetWrapName::setCollapsible), \
       InstanceMethod("setOrientation", &WidgetWrapName::setOrientation), \
