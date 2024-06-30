@@ -4,6 +4,7 @@
 
 #include "Extras/Utils/nutils.h"
 #include "QtGui/QIcon/qicon_wrap.h"
+#include "QtWidgets/QTabBar/qtabbar_wrap.h"
 #include "QtWidgets/QWidget/qwidget_wrap.h"
 
 Napi::FunctionReference QTabWidgetWrap::constructor;
@@ -13,7 +14,8 @@ Napi::Object QTabWidgetWrap::init(Napi::Env env, Napi::Object exports) {
   char CLASSNAME[] = "QTabWidget";
   Napi::Function func = DefineClass(
       env, CLASSNAME,
-      {InstanceMethod("addTab", &QTabWidgetWrap::addTab),
+      {InstanceMethod("tabBar", &QTabWidgetWrap::tabBar),
+       InstanceMethod("addTab", &QTabWidgetWrap::addTab),
        InstanceMethod("insertTab", &QTabWidgetWrap::insertTab),
        InstanceMethod("setTabPosition", &QTabWidgetWrap::setTabPosition),
        InstanceMethod("indexOf", &QTabWidgetWrap::indexOf),
@@ -61,6 +63,16 @@ QTabWidgetWrap::QTabWidgetWrap(const Napi::CallbackInfo& info)
   }
   this->rawData =
       extrautils::configureQWidget(this->getInternalInstance(), true);
+}
+
+Napi::Value QTabWidgetWrap::tabBar(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  QTabBar* widget = this->instance->tabBar();
+  if (widget) {
+    return WrapperCache::instance.getWrapper(env, widget);
+  } else {
+    return env.Null();
+  }
 }
 
 Napi::Value QTabWidgetWrap::addTab(const Napi::CallbackInfo& info) {

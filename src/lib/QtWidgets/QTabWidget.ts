@@ -5,6 +5,7 @@ import { QIcon } from '../QtGui/QIcon';
 import { TabPosition } from '../QtEnums';
 import { wrapperCache } from '../core/WrapperCache';
 import { checkIfNativeElement } from '../utils/helpers';
+import { QTabBar } from './QTabBar';
 
 /**
 
@@ -40,6 +41,10 @@ export class QTabWidget extends QWidget<QTabWidgetSignals> {
         super(native);
     }
 
+    tabBar(): QTabBar {
+        return this.native.tabBar();
+    }
+    
     addTab(page: QWidget, icon: QIcon, label: string): number {
         const index = this.native.addTab(page.native, icon.native, label);
         page.setFlexNodeSizeControlled(true);
