@@ -6,7 +6,7 @@ import { QHeaderView } from './QHeaderView';
 import { wrapperCache } from '../core/WrapperCache';
 import { NativeElement } from '../core/Component';
 import { checkIfNativeElement } from '../utils/helpers';
-import { QAbstractItemModel } from '../QtCore/QAbstractItemModel';
+import { QAbstractTableModel } from '../QtCore/QAbstractTableModel';
 
 /**
 
@@ -61,7 +61,7 @@ export class QTableView<Signals extends QTableViewSignals = QTableViewSignals> e
         return this.property('gridStyle').toInt();
     }
 
-    setModel(model: QAbstractItemModel): void {
+    setModel(model: QAbstractTableModel): void {
         this.native.setModel(model.native);
     }
 
