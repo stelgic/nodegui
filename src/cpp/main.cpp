@@ -2,6 +2,7 @@
 
 #include "Extras/Utils/nutils.h"
 #include "QtCore/QAbstractItemModel/qabstractitemmodel_wrap.h"
+#include "QtCore/QAbstractTableModel/qabstracttablemodel_wrap.h"
 #include "QtCore/QDate/qdate_wrap.h"
 #include "QtCore/QDateTime/qdatetime_wrap.h"
 #include "QtCore/QItemSelectionModel/qitemselectionmodel_wrap.h"
@@ -253,6 +254,7 @@ Napi::Object Main(Napi::Env env, Napi::Object exports) {
   QPaintEventWrap::init(env, exports);
   QPaletteWrap::init(env, exports);
   QAbstractItemModelWrap::init(env, exports);
+  QAbstractTableModelWrap::init(env, exports);
   QHeaderViewWrap::init(env, exports);
   QItemSelectionModelWrap::init(env, exports);
   QStyleFactoryWrap::init(env, exports);
